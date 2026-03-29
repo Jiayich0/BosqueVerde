@@ -6,6 +6,9 @@
 Project > Properties > Java Build Path > Libraries > Classpath > Add JARs... > fichero* > Apply and Close
 fichero*: BosqueVerde > lib > sqlite-jdbc-3.51.3.0.jar
 
+# Vista de ficheros
+Para Eclipse recomendable: Package Explorer (Barra lateral izquierda) > 'tres puntos' > Package Presentation > Hierarchical
+
 -------------------------------------------------------------------------------------------------------------
 |                                 Cambios de DCU, DClase y DSec a código                                    |
 -------------------------------------------------------------------------------------------------------------
@@ -37,8 +40,19 @@ Se usa el tipo String(java) / varchar(SQL) porque:
 - No se opera con él
 - Puede empezar con '0's
 - Puede contener +prefijo
+
 # Orden de atributos
 - Primero:   id
 - Luego:     resto
 - Último:    activo
 
+# Ver la BD
+Para visualizar las tablas de la Base de Datos se puede usar:
+https://sqliteviewer.app/
+Como en nuestro programa no se hacen borrados reales (solo lógicos), si se quiere borrar algún dato, hay que
+hacerlo a mano con algún script, código o una aplicación como https://sqlitebrowser.org/dl/
+
+-------------------------------------------------------------------------------------------------------------
+|                                                   Tareas                                                  |
+-------------------------------------------------------------------------------------------------------------
+# 1
