@@ -2,6 +2,7 @@ package bosqueverde.view.vendedor;
 
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,6 +19,7 @@ public class FormularioVendedorPanel extends JPanel {
 
 	public FormularioVendedorPanel() {
 		setLayout(new GridLayout(5, 2, 10, 10));
+		setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
 
 		add(new JLabel("Nombre:"));
 		txtNombre = new JTextField();
@@ -27,7 +29,7 @@ public class FormularioVendedorPanel extends JPanel {
 		txtPrimerApellido = new JTextField();
 		add(txtPrimerApellido);
 
-		add(new JLabel("Segundo apellido (opcional):"));
+		add(new JLabel("Segundo apellido:"));
 		txtSegundoApellido = new JTextField();
 		add(txtSegundoApellido);
 
@@ -66,5 +68,29 @@ public class FormularioVendedorPanel extends JPanel {
 		txtSegundoApellido.setText("");
 		txtDni.setText("");
 		txtTelefono.setText("");
+	}
+
+	public void setNombre(String nombre) {
+		txtNombre.setText(nombre);
+	}
+
+	public void setPrimerApellido(String primerApellido) {
+		txtPrimerApellido.setText(primerApellido);
+	}
+
+	public void setSegundoApellido(String segundoApellido) {
+		txtSegundoApellido.setText(segundoApellido != null ? segundoApellido : "");
+	}
+
+	public void setDni(String dni) {
+		txtDni.setText(dni);
+	}
+
+	public void setTelefono(String telefono) {
+		txtTelefono.setText(telefono);
+	}
+
+	public void setDniEditable(boolean editable) {
+		txtDni.setEditable(editable);
 	}
 }

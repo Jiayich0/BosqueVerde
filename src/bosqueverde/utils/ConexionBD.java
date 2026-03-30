@@ -42,8 +42,7 @@ public class ConexionBD {
 		String sqlDelete = "DELETE FROM vendedor";
 		String sqlResetSequence = "DELETE FROM sqlite_sequence WHERE name = 'vendedor'";
 
-		try (Connection conn = getConnection();
-			 Statement stmt = conn.createStatement()) {
+		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
 
 			stmt.executeUpdate(sqlDelete);
 			stmt.executeUpdate(sqlResetSequence);

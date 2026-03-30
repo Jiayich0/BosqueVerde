@@ -23,8 +23,6 @@ public class Main {
 		 * System.out.println("Conexión correcta con SQLite"); }
 		 */
 		ConexionBD.inicializarBD();
-		// TODO
-		//ConexionBD.vaciarVendedor();
 		System.out.println("Base de datos inicializada correctamente");
 	}
 

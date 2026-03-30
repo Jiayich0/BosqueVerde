@@ -1,7 +1,7 @@
 package bosqueverde.view.vendedor;
 
 import java.awt.BorderLayout;
-import java.awt.Frame;
+import java.awt.Dialog;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -9,21 +9,26 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import bosqueverde.facade.SistemaBV;
+import bosqueverde.model.Vendedor;
 import bosqueverde.utils.Utils;
 
-public class AltaVendedorDialog extends JDialog {
+public class ModificarVendedorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
 	private FormularioVendedorPanel formulario;
+	private Vendedor vendedor;
 
-	public AltaVendedorDialog(Frame parent) {
-		super(parent, "ALTA VENDEDOR", true);
-		setSize(500, 300);
+	public ModificarVendedorDialog(Dialog parent, Vendedor vendedor) {
+		super(parent, "MODIFICAR VENDEDOR", true);
+		this.vendedor = vendedor;
+
+		setSize(500, 320);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		initComponents();
+		cargarDatos();
 	}
 
 	private void initComponents() {
@@ -33,20 +38,30 @@ public class AltaVendedorDialog extends JDialog {
 		add(formulario, BorderLayout.CENTER);
 
 		JPanel panelBotones = new JPanel();
-
-		JButton btnOk = new JButton("OK");
+		
+		JButton btnGuardar = new JButton("Guardar");
 		JButton btnCancelar = new JButton("Cancelar");
 
-		btnOk.addActionListener(e -> aceptar());
+		btnGuardar.addActionListener(e -> guardarCambios());
 		btnCancelar.addActionListener(e -> dispose());
 
-		panelBotones.add(btnOk);
+		panelBotones.add(btnGuardar);
 		panelBotones.add(btnCancelar);
 
 		add(panelBotones, BorderLayout.SOUTH);
 	}
 
-	private void aceptar() {
+	private void cargarDatos() {
+		formulario.setNombre(vendedor.getNombre());
+		formulario.setPrimerApellido(vendedor.getPrimerApellido());
+		formulario.setSegundoApellido(vendedor.getSegundoApellido());
+		formulario.setDni(vendedor.getDni());
+		formulario.setTelefono(vendedor.getTelefono());
+
+		formulario.setDniEditable(false);
+	}
+
+	private void guardarCambios() {
 		String nombre = formulario.getNombre();
 		String primerApellido = formulario.getPrimerApellido();
 		String segundoApellido = formulario.getSegundoApellido();
@@ -71,16 +86,15 @@ public class AltaVendedorDialog extends JDialog {
 			return;
 		}
 
-		boolean altaCorrecta = SistemaBV.getInstance().altaVendedor(nombre, primerApellido, segundoApellido, dni,
-				telefono);
+		boolean modificacionCorrecta = SistemaBV.getInstance().modificarVendedor(nombre, primerApellido,
+				segundoApellido, dni, telefono);
 
-		if (altaCorrecta) {
-			JOptionPane.showMessageDialog(this, "Vendedor dado de alta correctamente.", "ALTA CORRECTA",
+		if (modificacionCorrecta) {
+			JOptionPane.showMessageDialog(this, "Vendedor modificado correctamente.", "MODIFICACIÓN CORRECTA",
 					JOptionPane.INFORMATION_MESSAGE);
 			dispose();
 		} else {
-			JOptionPane.showMessageDialog(this,
-					"No se ha podido dar de alta al vendedor. Ya existe un vendedor activo con ese DNI.", "ERROR ALTA",
+			JOptionPane.showMessageDialog(this, "No se ha podido modificar el vendedor.", "ERROR MODIFICACIÓN",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}

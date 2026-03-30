@@ -1,7 +1,11 @@
 package bosqueverde.view.vendedor;
 
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,7 +18,7 @@ public class VendedorWindow extends JFrame {
 
 	public VendedorWindow() {
 		setTitle("VENDEDOR");
-		setSize(900, 250);
+		setSize(360, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -22,30 +26,58 @@ public class VendedorWindow extends JFrame {
 	}
 
 	private void initComponents() {
-		JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 60));
+		setLayout(new BorderLayout(15, 15));
 
-		JButton btnAlta = new JButton("ALTA VENDEDOR");
-		JButton btnBaja = new JButton("BAJA VENDEDOR");
-		JButton btnModificar = new JButton("MODIFICAR VENDEDOR");
-		JButton btnLeer = new JButton("LEER VENDEDOR");
-		JButton btnListar = new JButton("LISTAR VENDEDORES");
-		JButton btnVolver = new JButton("Volver");
+		JPanel panelBotones = crearPanelBotones();
+		JPanel panelInferior = crearPanelInferior();
+
+		add(panelBotones, BorderLayout.CENTER);
+		add(panelInferior, BorderLayout.SOUTH);
+	}
+
+	private JPanel crearPanelBotones() {
+		JPanel contenedor = new JPanel(new BorderLayout());
+		contenedor.setBorder(BorderFactory.createEmptyBorder(45, 72, 0, 72));
+
+		JPanel panel = new JPanel(new GridLayout(6, 1, 0, 15));
+
+		JButton btnAlta = crearBotonSubsistema("ALTA VENDEDOR");
+		JButton btnBaja = crearBotonSubsistema("BAJA VENDEDOR");
+		JButton btnModificar = crearBotonSubsistema("MODIFICAR VENDEDOR");
+		JButton btnLeer = crearBotonSubsistema("LEER VENDEDOR");
+		JButton btnListar = crearBotonSubsistema("LISTAR VENDEDORES");
 
 		btnAlta.addActionListener(e -> abrirAlta());
 		btnBaja.addActionListener(e -> abrirBaja());
 		btnModificar.addActionListener(e -> abrirModificar());
 		btnLeer.addActionListener(e -> abrirLeer());
 		btnListar.addActionListener(e -> abrirListar());
-		btnVolver.addActionListener(e -> volverMenuPrincipal());
 
 		panel.add(btnAlta);
 		panel.add(btnBaja);
 		panel.add(btnModificar);
 		panel.add(btnLeer);
 		panel.add(btnListar);
+		
+		contenedor.add(panel, BorderLayout.CENTER);
+		return contenedor;
+	}
+	
+	private JPanel crearPanelInferior() {
+		JPanel panel = new JPanel();
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(e -> volverMenuPrincipal());
 		panel.add(btnVolver);
 
-		add(panel);
+		return panel;
+	}
+
+	private JButton crearBotonSubsistema(String texto) {
+		JButton boton = new JButton(texto);
+		boton.setPreferredSize(new Dimension(60, 40));
+		boton.setFont(new Font("SansSerif", Font.BOLD, 14));
+		return boton;
 	}
 
 	private void abrirAlta() {
@@ -54,17 +86,17 @@ public class VendedorWindow extends JFrame {
 	}
 
 	private void abrirBaja() {
-		//
-		// dialog.setVisible(true);
+		BajaVendedorDialog dialog = new BajaVendedorDialog(this);
+		dialog.setVisible(true);
 	}
 
 	private void abrirModificar() {
-		//
-		// dialog.setVisible(true);
+		BuscarVendedorDialog dialog = new BuscarVendedorDialog(this, "modificar");
+		dialog.setVisible(true);
 	}
 
 	private void abrirLeer() {
-		BuscarVendedorDialog dialog = new BuscarVendedorDialog(this);
+		BuscarVendedorDialog dialog = new BuscarVendedorDialog(this, "leer");
 		dialog.setVisible(true);
 	}
 

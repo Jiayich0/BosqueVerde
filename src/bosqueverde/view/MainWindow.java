@@ -1,11 +1,20 @@
 package bosqueverde.view;
 
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
+import bosqueverde.utils.Utils;
 import bosqueverde.view.vendedor.VendedorWindow;
 
 public class MainWindow extends JFrame {
@@ -14,7 +23,7 @@ public class MainWindow extends JFrame {
 
 	public MainWindow() {
 		setTitle("BOSQUE DE LETRAS");
-		setSize(800, 500);
+		setSize(900, 700);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -22,25 +31,58 @@ public class MainWindow extends JFrame {
 	}
 
 	private void initComponents() {
-		JPanel panelPrincipal = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 80));
+		setLayout(new BorderLayout(15, 15));
 
-		JButton btnCliente = new JButton("CLIENTE");
-		JButton btnVendedor = new JButton("VENDEDOR");
-		JButton btnLibro = new JButton("LIBRO");
-		JButton btnCategoria = new JButton("CATEGORÍA");
-		JButton btnEditorial = new JButton("EDITORIAL");
-		JButton btnFactura = new JButton("FACTURA");
+		JPanel panelImagen = crearPanelImagen();
+		JPanel panelBotones = crearPanelBotones();
+
+		add(panelImagen, BorderLayout.CENTER);
+		add(panelBotones, BorderLayout.SOUTH);
+	}
+
+	private JPanel crearPanelImagen() {
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+
+		JLabel lblImagen = new JLabel();
+		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+
+		ImageIcon icon = new ImageIcon(Utils.BDL_IMG);
+		Image imagenEscalada = icon.getImage().getScaledInstance(-1, 450, Image.SCALE_SMOOTH);
+		lblImagen.setIcon(new ImageIcon(imagenEscalada));
+
+		panel.add(lblImagen, BorderLayout.CENTER);
+		return panel;
+	}
+
+	private JPanel crearPanelBotones() {
+		JPanel panel = new JPanel(new GridLayout(2, 3, 20, 20));
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 150, 60, 150));
+
+		JButton btnCliente = crearBotonSubsistema("CLIENTE");
+		JButton btnVendedor = crearBotonSubsistema("VENDEDOR");
+		JButton btnLibro = crearBotonSubsistema("LIBRO");
+		JButton btnCategoria = crearBotonSubsistema("CATEGORÍA");
+		JButton btnEditorial = crearBotonSubsistema("EDITORIAL");
+		JButton btnFactura = crearBotonSubsistema("FACTURA");
 
 		btnVendedor.addActionListener(e -> abrirVendedor());
 
-		panelPrincipal.add(btnCliente);
-		panelPrincipal.add(btnVendedor);
-		panelPrincipal.add(btnLibro);
-		panelPrincipal.add(btnCategoria);
-		panelPrincipal.add(btnEditorial);
-		panelPrincipal.add(btnFactura);
+		panel.add(btnCliente);
+		panel.add(btnVendedor);
+		panel.add(btnLibro);
+		panel.add(btnCategoria);
+		panel.add(btnEditorial);
+		panel.add(btnFactura);
 
-		add(panelPrincipal);
+		return panel;
+	}
+
+	private JButton crearBotonSubsistema(String texto) {
+		JButton boton = new JButton(texto);
+		boton.setPreferredSize(new Dimension(60, 40));
+		boton.setFont(new Font("SansSerif", Font.BOLD, 14));
+		return boton;
 	}
 
 	private void abrirVendedor() {
@@ -48,15 +90,4 @@ public class MainWindow extends JFrame {
 		ventanaVendedor.setVisible(true);
 		dispose();
 	}
-
-	// diseño de botones inicializables:
-	// 1. Boton normal de funcionalidades
-	// 2. Botones de navegabilidad (ok, cancelar, etc)
-
-	// rediseñar mainWindow cmo en la SRS, mirar que usar para poder hacerlo más
-	// bonito
-	// y añadir png al mainwindow
-
-	// ajustar margenes de formualrios
-	// decidir como poner lo de opcional
 }
