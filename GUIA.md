@@ -55,6 +55,9 @@ pruebas, hay que hacerlo a mano con alguna una aplicación como
     https://sqlitebrowser.org/dl/
 o también crear vuestro método en ConexionBD.java, solo usarlo cuando se esté haciendo pruebas
 
+# DNI y teléfono
+Para validar DNI y telefono hay un método para cada uno, siempre deben de cumplir esas condiciones
+
 -------------------------------------------------------------------------------------------------------------
 |                                                   Tareas                                                  |
 -------------------------------------------------------------------------------------------------------------
@@ -74,4 +77,6 @@ Para hacerlo con GitHub los pasos son:
 Crear tu tabla (si es que ningún compañero más que comparta subsistema lo ha creado ya)
 > En ConexionDB.java y el método de incializar: crear tu sentencia sql y añadir un execute de esa sentencia
   seguido del anterior
-> (Para crear el borrado de depuración añadirlo abajo)
+> (Para crear el borrado de depuración añadirlo abajo, y en Main llamar a ConexionBD.vaciarX() depsués de
+  inicializarDB())
+  
