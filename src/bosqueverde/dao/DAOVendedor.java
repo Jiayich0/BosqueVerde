@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bosqueverde.model.Vendedor;
-import bosqueverde.util.ConexionBD;
+import bosqueverde.utils.ConexionBD;
 
 public class DAOVendedor {
 

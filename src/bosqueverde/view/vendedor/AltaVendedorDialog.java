@@ -67,8 +67,8 @@ public class AltaVendedorDialog extends JDialog {
 			dispose();
 		} else {
 			JOptionPane.showMessageDialog(this,
-					"No se ha podido dar de alta al vendedor. Ya existe un vendedor activo con ese DNI.",
-					"ERROR ALTA", JOptionPane.ERROR_MESSAGE);
+					"No se ha podido dar de alta al vendedor. Ya existe un vendedor activo con ese DNI.", "ERROR ALTA",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

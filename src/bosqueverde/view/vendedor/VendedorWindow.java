@@ -32,7 +32,10 @@ public class VendedorWindow extends JFrame {
 		JButton btnVolver = new JButton("Volver");
 
 		btnAlta.addActionListener(e -> abrirAlta());
-		// otros
+		btnBaja.addActionListener(e -> abrirBaja());
+		btnModificar.addActionListener(e -> abrirModificar());
+		btnLeer.addActionListener(e -> abrirLeer());
+		btnListar.addActionListener(e -> abrirListar());
 		btnVolver.addActionListener(e -> volverMenuPrincipal());
 
 		panel.add(btnAlta);
@@ -50,7 +53,25 @@ public class VendedorWindow extends JFrame {
 		dialog.setVisible(true);
 	}
 
-	// add
+	private void abrirBaja() {
+		//
+		// dialog.setVisible(true);
+	}
+
+	private void abrirModificar() {
+		//
+		// dialog.setVisible(true);
+	}
+
+	private void abrirLeer() {
+		BuscarVendedorDialog dialog = new BuscarVendedorDialog(this);
+		dialog.setVisible(true);
+	}
+
+	private void abrirListar() {
+		ListarVendedoresDialog dialog = new ListarVendedoresDialog(this);
+		dialog.setVisible(true);
+	}
 
 	private void volverMenuPrincipal() {
 		MainWindow ventanaPrincipal = new MainWindow();

@@ -2,7 +2,7 @@ package bosqueverde.app;
 
 import javax.swing.SwingUtilities;
 
-import bosqueverde.util.ConexionBD;
+import bosqueverde.utils.ConexionBD;
 import bosqueverde.view.MainWindow;
 
 public class Main {
@@ -17,13 +17,14 @@ public class Main {
 	}
 
 	private static void initDB() throws Exception {
-		 
-		/*	Pruebas de conexión
-		try (Connection conn = ConexionBD.getConnection()) {
-			System.out.println("Conexión correcta con SQLite");
-		}
-		*/
+
+		/*
+		 * Pruebas de conexión try (Connection conn = ConexionBD.getConnection()) {
+		 * System.out.println("Conexión correcta con SQLite"); }
+		 */
 		ConexionBD.inicializarBD();
+		// TODO
+		//ConexionBD.vaciarVendedor();
 		System.out.println("Base de datos inicializada correctamente");
 	}
 
