@@ -1,21 +1,21 @@
-package bosqueverde.facade;
+package bosquedeletras.facade;
 
 import java.util.List;
 
-import bosqueverde.model.Vendedor;
+import bosquedeletras.model.Vendedor;
 
-public class SistemaBV {
+public class SistemaBDL {
 
-	private static SistemaBV instancia;
+	private static SistemaBDL instancia;
 	private ControlVendedor controlVendedor;
 
-	private SistemaBV() {
+	private SistemaBDL() {
 		this.controlVendedor = new ControlVendedor();
 	}
 
-	public static SistemaBV getInstance() {
+	public static SistemaBDL getInstance() {
 		if (instancia == null) {
-			instancia = new SistemaBV();
+			instancia = new SistemaBDL();
 		}
 		return instancia;
 	}

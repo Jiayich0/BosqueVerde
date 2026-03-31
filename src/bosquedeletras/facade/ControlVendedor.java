@@ -1,9 +1,9 @@
-package bosqueverde.facade;
+package bosquedeletras.facade;
 
 import java.util.List;
 
-import bosqueverde.dao.DAOVendedor;
-import bosqueverde.model.Vendedor;
+import bosquedeletras.dao.DAOVendedor;
+import bosquedeletras.model.Vendedor;
 
 public class ControlVendedor {
 

@@ -1,4 +1,4 @@
-package bosqueverde.view;
+package bosquedeletras.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -14,8 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import bosqueverde.utils.Utils;
-import bosqueverde.view.vendedor.VendedorWindow;
+import bosquedeletras.utils.Utils;
+import bosquedeletras.view.vendedor.VendedorWindow;
 
 public class MainWindow extends JFrame {
 

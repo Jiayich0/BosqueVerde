@@ -1,9 +1,9 @@
-package bosqueverde.app;
+package bosquedeletras.app;
 
 import javax.swing.SwingUtilities;
 
-import bosqueverde.utils.ConexionBD;
-import bosqueverde.view.MainWindow;
+import bosquedeletras.utils.ConexionBD;
+import bosquedeletras.view.MainWindow;
 
 public class Main {
 

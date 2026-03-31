@@ -1,4 +1,4 @@
-package bosqueverde.model;
+package bosquedeletras.model;
 
 public class Vendedor {
 

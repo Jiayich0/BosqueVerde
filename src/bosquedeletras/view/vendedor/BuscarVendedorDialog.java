@@ -1,4 +1,4 @@
-package bosqueverde.view.vendedor;
+package bosquedeletras.view.vendedor;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import bosqueverde.facade.SistemaBV;
-import bosqueverde.model.Vendedor;
-import bosqueverde.utils.Utils;
+import bosquedeletras.facade.SistemaBDL;
+import bosquedeletras.model.Vendedor;
+import bosquedeletras.utils.Utils;
 
 public class BuscarVendedorDialog extends JDialog {
 
@@ -64,7 +64,7 @@ public class BuscarVendedorDialog extends JDialog {
 			return;
 		}
 
-		Vendedor vendedor = SistemaBV.getInstance().leerVendedor(dni);
+		Vendedor vendedor = SistemaBDL.getInstance().leerVendedor(dni);
 
 		if (vendedor == null) {
 			JOptionPane.showMessageDialog(this, "El vendedor indicado no existe.", "NO EXISTE",

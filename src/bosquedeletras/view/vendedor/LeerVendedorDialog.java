@@ -1,4 +1,4 @@
-package bosqueverde.view.vendedor;
+package bosquedeletras.view.vendedor;
 
 import java.awt.BorderLayout;
 import java.awt.Dialog;
@@ -12,8 +12,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import bosqueverde.model.Vendedor;
-import bosqueverde.utils.Utils;
+import bosquedeletras.model.Vendedor;
+import bosquedeletras.utils.Utils;
 
 public class LeerVendedorDialog extends JDialog {
 

@@ -1,4 +1,4 @@
-package bosqueverde.view.vendedor;
+package bosquedeletras.view.vendedor;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import bosqueverde.facade.SistemaBV;
-import bosqueverde.model.Vendedor;
-import bosqueverde.utils.Utils;
+import bosquedeletras.facade.SistemaBDL;
+import bosquedeletras.model.Vendedor;
+import bosquedeletras.utils.Utils;
 
 public class BajaVendedorDialog extends JDialog {
 
@@ -62,7 +62,7 @@ public class BajaVendedorDialog extends JDialog {
 			return;
 		}
 
-		Vendedor vendedor = SistemaBV.getInstance().leerVendedor(dni);
+		Vendedor vendedor = SistemaBDL.getInstance().leerVendedor(dni);
 
 		if (vendedor == null) {
 			JOptionPane.showMessageDialog(this, "No se ha podido dar de baja. No existe un vendedor con ese DNI.",
@@ -78,7 +78,7 @@ public class BajaVendedorDialog extends JDialog {
 			return;
 		}
 
-		boolean bajaCorrecta = SistemaBV.getInstance().bajaVendedor(dni);
+		boolean bajaCorrecta = SistemaBDL.getInstance().bajaVendedor(dni);
 
 		if (bajaCorrecta) {
 			JOptionPane.showMessageDialog(this, "Vendedor dado de baja correctamente.", "BAJA CORRECTA",

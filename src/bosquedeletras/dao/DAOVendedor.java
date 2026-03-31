@@ -1,11 +1,11 @@
-package bosqueverde.dao;
+package bosquedeletras.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import bosqueverde.model.Vendedor;
-import bosqueverde.utils.ConexionBD;
+import bosquedeletras.model.Vendedor;
+import bosquedeletras.utils.ConexionBD;
 
 public class DAOVendedor {
 

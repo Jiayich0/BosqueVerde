@@ -1,8 +1,8 @@
-package bosqueverde.utils;
+package bosquedeletras.utils;
 
 public class Utils {
 
-	public static final String DB_PATH = "jdbc:sqlite:src/resources/database/bosqueverde.db";
+	public static final String DB_PATH = "jdbc:sqlite:src/resources/database/bosqueDeLetras.db";
 	public static final String BDL_IMG = "src/resources/icons/bosqueDeLetras.png";
 	public static final String VENDEDOR_IMG = "src/resources/icons/vendedor.png";
 

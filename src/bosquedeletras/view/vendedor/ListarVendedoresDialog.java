@@ -1,4 +1,4 @@
-package bosqueverde.view.vendedor;
+package bosquedeletras.view.vendedor;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
@@ -11,8 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import bosqueverde.facade.SistemaBV;
-import bosqueverde.model.Vendedor;
+import bosquedeletras.facade.SistemaBDL;
+import bosquedeletras.model.Vendedor;
 
 public class ListarVendedoresDialog extends JDialog {
 
@@ -60,7 +60,7 @@ public class ListarVendedoresDialog extends JDialog {
 	private void cargarVendedores() {
 		modeloTabla.setRowCount(0);
 
-		List<Vendedor> vendedores = SistemaBV.getInstance().listarVendedores();
+		List<Vendedor> vendedores = SistemaBDL.getInstance().listarVendedores();
 
 		for (Vendedor v : vendedores) {
 			Object[] fila = { v.getId(), v.getNombre(), v.getPrimerApellido(), v.getSegundoApellido(), v.getDni(),
