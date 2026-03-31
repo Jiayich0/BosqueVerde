@@ -77,7 +77,7 @@ public class LeerVendedorDialog extends JDialog {
 		panel.add(new JLabel(v.getPrimerApellido()));
 
 		panel.add(new JLabel("Segundo apellido:"));
-		panel.add(new JLabel(v.getSegundoApellido() != null ? v.getSegundoApellido() : ""));
+		panel.add(new JLabel(v.getSegundoApellido() != null ? v.getSegundoApellido() : "-"));
 
 		panel.add(new JLabel("DNI:"));
 		panel.add(new JLabel(v.getDni()));

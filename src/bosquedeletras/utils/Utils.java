@@ -39,7 +39,7 @@ public class Utils {
 		for (int i = 0; i < telefono.length(); i++) {
 			char c = telefono.charAt(i);
 
-			if (!Character.isDigit(c) && c != '+') {
+			if (!Character.isDigit(c) && c != '+' && c != ' ') {
 				return false;
 			}
 		}

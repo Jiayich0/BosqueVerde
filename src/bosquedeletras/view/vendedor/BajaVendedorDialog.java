@@ -54,7 +54,7 @@ public class BajaVendedorDialog extends JDialog {
 	}
 
 	private void darBaja() {
-		String dni = txtDni.getText().trim();
+		String dni = txtDni.getText().trim().toUpperCase();
 
 		if (!Utils.isValidDni(dni)) {
 			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO - BAJA VENDEDOR",

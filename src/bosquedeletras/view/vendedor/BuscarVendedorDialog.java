@@ -56,7 +56,7 @@ public class BuscarVendedorDialog extends JDialog {
 	}
 
 	private void buscar() {
-		String dni = txtDni.getText().trim();
+		String dni = txtDni.getText().trim().toUpperCase();
 
 		if (!Utils.isValidDni(dni)) {
 			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO",

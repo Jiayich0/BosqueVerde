@@ -38,7 +38,7 @@ public class ModificarVendedorDialog extends JDialog {
 		add(formulario, BorderLayout.CENTER);
 
 		JPanel panelBotones = new JPanel();
-		
+
 		JButton btnGuardar = new JButton("Guardar");
 		JButton btnCancelar = new JButton("Cancelar");
 
@@ -67,6 +67,10 @@ public class ModificarVendedorDialog extends JDialog {
 		String segundoApellido = formulario.getSegundoApellido();
 		String dni = formulario.getDni();
 		String telefono = formulario.getTelefono();
+
+		if (segundoApellido.isEmpty()) {
+			segundoApellido = null;
+		}
 
 		if (nombre.isEmpty() || primerApellido.isEmpty() || dni.isEmpty() || telefono.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Nombre, primer apellido, DNI y teléfono son obligatorios.",

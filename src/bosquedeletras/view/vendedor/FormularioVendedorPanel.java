@@ -55,19 +55,11 @@ public class FormularioVendedorPanel extends JPanel {
 	}
 
 	public String getDni() {
-		return txtDni.getText().trim();
+		return txtDni.getText().trim().toUpperCase();
 	}
 
 	public String getTelefono() {
 		return txtTelefono.getText().trim();
-	}
-
-	public void limpiar() {
-		txtNombre.setText("");
-		txtPrimerApellido.setText("");
-		txtSegundoApellido.setText("");
-		txtDni.setText("");
-		txtTelefono.setText("");
 	}
 
 	public void setNombre(String nombre) {

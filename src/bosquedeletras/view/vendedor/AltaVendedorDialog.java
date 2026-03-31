@@ -53,6 +53,10 @@ public class AltaVendedorDialog extends JDialog {
 		String dni = formulario.getDni();
 		String telefono = formulario.getTelefono();
 
+		if (segundoApellido.isEmpty()) {
+			segundoApellido = null;
+		}
+
 		if (nombre.isEmpty() || primerApellido.isEmpty() || dni.isEmpty() || telefono.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Nombre, primer apellido, DNI y teléfono son obligatorios.",
 					"DATOS INCOMPLETOS", JOptionPane.WARNING_MESSAGE);

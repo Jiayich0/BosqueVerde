@@ -56,7 +56,7 @@ pruebas, hay que hacerlo a mano con alguna una aplicación como
 o también crear vuestro método en ConexionBD.java, solo usarlo cuando se esté haciendo pruebas
 
 -------------------------------------------------------------------------------------------------------------
-|                                                   Tareas                                                  |
+|                                              Flujo Tareas                                                 |
 -------------------------------------------------------------------------------------------------------------
 # 0
 Para hacerlo con GitHub los pasos son:
@@ -68,10 +68,32 @@ Para hacerlo con GitHub los pasos son:
 > Lo reviso para que haya coherencia entre las partes
 > Si está bien lo apruebo y hacéis merge al main
 
-# 1
-
-# Base de datos: crear tabla
+# 1 Base de datos: crear tabla
 Crear tu tabla (si es que ningún compañero más que comparta subsistema lo ha creado ya)
 > En ConexionDB.java y el método de incializar: crear tu sentencia sql y añadir un execute de esa sentencia
-  seguido del anterior
-> (Para crear el borrado de depuración añadirlo abajo)
+  seguido
+> (Para crear el borrado fisico para las pruebas, añadirlo abajo en ConexionDB)
+
+# 2 Modelo: crear el modelo
+Vuestro modelo, la clase con sus atributos y sus getter/setter
+
+# 3 Crear el DAO, el "objeto dato"
+Todas las consultas sql de vuestro modelo
+
+# 4 Control
+Crear el Control de vuestro modelo, básicamente implementar los casos de uso
+
+# 5 Integrarlo en SistemaBDL (fachada)
+*De momento todos los métodos directamente en SistemaBDL.java (a espera de la repseusta de la profe)
+
+# 6 Implementar la vista (Swing)
+Crear el pequete de veustro susbsistema y creáis dentro las clase snecesarias para la vista
+
+-------------------------------------------------------------------------------------------------------------
+|                                                   Pruebas                                                 |
+-------------------------------------------------------------------------------------------------------------
+Para verificar las diferentes funcionalidades se pueden realizar varios flujos de pruebas completas, pero 
+reservar a los usuarios 1, 2 y 3 para los tres casos de prueba base: 
+id=1 -> Usuario completo con todos los campos completos
+id=2 -> Usuario con todos los campos opcionales vacíos
+id=3 -> Usuario con todos los datos pero en inactivo

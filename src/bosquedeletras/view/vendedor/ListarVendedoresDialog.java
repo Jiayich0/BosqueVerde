@@ -63,8 +63,8 @@ public class ListarVendedoresDialog extends JDialog {
 		List<Vendedor> vendedores = SistemaBDL.getInstance().listarVendedores();
 
 		for (Vendedor v : vendedores) {
-			Object[] fila = { v.getId(), v.getNombre(), v.getPrimerApellido(), v.getSegundoApellido(), v.getDni(),
-					v.getTelefono() };
+			Object[] fila = { v.getId(), v.getNombre(), v.getPrimerApellido(),
+					v.getSegundoApellido() != null ? v.getSegundoApellido() : "-", v.getDni(), v.getTelefono() };
 			modeloTabla.addRow(fila);
 		}
 	}

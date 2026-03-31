@@ -58,14 +58,14 @@ public class VendedorWindow extends JFrame {
 		panel.add(btnModificar);
 		panel.add(btnLeer);
 		panel.add(btnListar);
-		
+
 		contenedor.add(panel, BorderLayout.CENTER);
 		return contenedor;
 	}
-	
+
 	private JPanel crearPanelInferior() {
 		JPanel panel = new JPanel();
-		
+
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(e -> volverMenuPrincipal());
 		panel.add(btnVolver);
