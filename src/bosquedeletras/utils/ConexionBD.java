@@ -24,9 +24,22 @@ public class ConexionBD {
 					);
 				""";
 
+		String sqlTablaLibro = """
+					CREATE TABLE IF NOT EXISTS libro (
+						id INTEGER PRIMARY KEY AUTOINCREMENT,
+						titulo TEXT NOT NULL,
+						autor TEXT NOT NULL,
+						isbn TEXT UNIQUE NOT NULL,
+						editorial TEXT NOT NULL,
+						ano INTEGER NOT NULL,
+						activo INTEGER NOT NULL
+					);
+				""";
+
 		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
 
 			stmt.execute(sqlTablaVendedor);
+			stmt.execute(sqlTablaLibro);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
