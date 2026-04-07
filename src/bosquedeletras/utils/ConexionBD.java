@@ -35,6 +35,7 @@ public class ConexionBD {
 						activo INTEGER NOT NULL
 					);
 				""";
+		
 		String sqlTablaFactura = """
 					CREATE TABLE IF NOT EXISTS factura (
 						id INTEGER PRIMARY KEY AUTOINCREMENT,
