@@ -60,7 +60,7 @@ public class ListarVendedoresDialog extends JDialog {
 	private void cargarVendedores() {
 		modeloTabla.setRowCount(0);
 
-		List<Vendedor> vendedores = SistemaBDL.getInstance().listarVendedores();
+		List<Vendedor> vendedores = SistemaBDL.getInstance().getControlVendedor().listarVendedores();
 
 		for (Vendedor v : vendedores) {
 			Object[] fila = { v.getId(), v.getNombre(), v.getPrimerApellido(),

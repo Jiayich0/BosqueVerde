@@ -75,7 +75,7 @@ public class AltaVendedorDialog extends JDialog {
 			return;
 		}
 
-		boolean altaCorrecta = SistemaBDL.getInstance().altaVendedor(nombre, primerApellido, segundoApellido, dni,
+		boolean altaCorrecta = SistemaBDL.getInstance().getControlVendedor().altaVendedor(nombre, primerApellido, segundoApellido, dni,
 				telefono);
 
 		if (altaCorrecta) {

@@ -66,7 +66,7 @@ public class AltaLibroDialog extends JDialog {
             return;
         }
 
-        boolean altaCorrecta = SistemaBDL.getInstance().altaLibro(titulo, autor, isbn, editorial, ano);
+        boolean altaCorrecta = SistemaBDL.getInstance().getControlLibro().altaLibro(titulo, autor, isbn, editorial, ano);
 
         if (altaCorrecta) {
             JOptionPane.showMessageDialog(this, "Libro dado de alta correctamente.", "ALTA CORRECTA",

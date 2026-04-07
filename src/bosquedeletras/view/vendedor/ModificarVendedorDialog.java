@@ -90,7 +90,7 @@ public class ModificarVendedorDialog extends JDialog {
 			return;
 		}
 
-		boolean modificacionCorrecta = SistemaBDL.getInstance().modificarVendedor(nombre, primerApellido,
+		boolean modificacionCorrecta = SistemaBDL.getInstance().getControlVendedor().modificarVendedor(nombre, primerApellido,
 				segundoApellido, dni, telefono);
 
 		if (modificacionCorrecta) {

@@ -62,7 +62,7 @@ public class BajaVendedorDialog extends JDialog {
 			return;
 		}
 
-		Vendedor vendedor = SistemaBDL.getInstance().leerVendedor(dni);
+		Vendedor vendedor = SistemaBDL.getInstance().getControlVendedor().leerVendedor(dni);
 
 		if (vendedor == null) {
 			JOptionPane.showMessageDialog(this, "No se ha podido dar de baja. No existe un vendedor con ese DNI.",
@@ -78,7 +78,7 @@ public class BajaVendedorDialog extends JDialog {
 			return;
 		}
 
-		boolean bajaCorrecta = SistemaBDL.getInstance().bajaVendedor(dni);
+		boolean bajaCorrecta = SistemaBDL.getInstance().getControlVendedor().bajaVendedor(dni);
 
 		if (bajaCorrecta) {
 			JOptionPane.showMessageDialog(this, "Vendedor dado de baja correctamente.", "BAJA CORRECTA",

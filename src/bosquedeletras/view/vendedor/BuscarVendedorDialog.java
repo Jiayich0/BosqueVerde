@@ -64,7 +64,7 @@ public class BuscarVendedorDialog extends JDialog {
 			return;
 		}
 
-		Vendedor vendedor = SistemaBDL.getInstance().leerVendedor(dni);
+		Vendedor vendedor = SistemaBDL.getInstance().getControlVendedor().leerVendedor(dni);
 
 		if (vendedor == null) {
 			JOptionPane.showMessageDialog(this, "El vendedor indicado no existe.", "NO EXISTE",
