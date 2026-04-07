@@ -14,7 +14,7 @@ public class AnadirLibroVentaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private FormularioAnadirLibroPanel formulario;
+	private FormularioLineaFacturaPanel formulario;
 
 	public AnadirLibroVentaDialog(Frame parent) {
 		super(parent, "AÑADIR LIBRO A VENTA", true);
@@ -28,7 +28,7 @@ public class AnadirLibroVentaDialog extends JDialog {
 	private void initComponents() {
 		setLayout(new BorderLayout());
 
-		formulario = new FormularioAnadirLibroPanel();
+		formulario = new FormularioLineaFacturaPanel();
 		add(formulario, BorderLayout.CENTER);
 
 		JPanel panelBotones = new JPanel();
