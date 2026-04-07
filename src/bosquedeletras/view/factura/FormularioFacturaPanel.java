@@ -43,16 +43,4 @@ public class FormularioFacturaPanel extends JPanel {
 	public int getIdVendedor() {
 		return Integer.parseInt(txtIdVendedor.getText().trim());
 	}
-
-	public void setFecha(String fecha) {
-		txtFecha.setText(fecha);
-	}
-
-	public void setIdCliente(int idCliente) {
-		txtIdCliente.setText(String.valueOf(idCliente));
-	}
-
-	public void setIdVendedor(int idVendedor) {
-		txtIdVendedor.setText(String.valueOf(idVendedor));
-	}
 }
