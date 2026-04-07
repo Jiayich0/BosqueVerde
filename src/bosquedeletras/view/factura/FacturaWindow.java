@@ -41,29 +41,29 @@ public class FacturaWindow extends JFrame {
 
 		JPanel panel = new JPanel(new GridLayout(8, 1, 0, 15));
 
-		JButton btnAbrirVenta = crearBotonSubsistema("ABRIR VENTA");
+		JButton btnAbrir = crearBotonSubsistema("ABRIR VENTA");
 		JButton btnAnadirLibro = crearBotonSubsistema("AÑADIR LIBRO A VENTA");
-		JButton btnCerrarVenta = crearBotonSubsistema("CERRAR VENTA");
-		JButton btnLeerFactura = crearBotonSubsistema("LEER FACTURA");
-		JButton btnListarFacturas = crearBotonSubsistema("LISTAR FACTURAS");
-		JButton btnListarPorCliente = crearBotonSubsistema("LISTAR POR CLIENTE");
-		JButton btnListarPorVendedor = crearBotonSubsistema("LISTAR POR VENDEDOR");
+		JButton btnCerrar = crearBotonSubsistema("CERRAR VENTA");
+		JButton btnLeer = crearBotonSubsistema("LEER FACTURA");
+		JButton btnListar = crearBotonSubsistema("LISTAR FACTURAS");
+		JButton btnListarCliente = crearBotonSubsistema("LISTAR POR CLIENTE");
+		JButton btnListarVendedor = crearBotonSubsistema("LISTAR POR VENDEDOR");
 
-		btnAbrirVenta.addActionListener(e -> abrirVenta());
+		btnAbrir.addActionListener(e -> abrirVenta());
 		btnAnadirLibro.addActionListener(e -> abrirAnadirLibro());
-		btnCerrarVenta.addActionListener(e -> abrirCerrarVenta());
-		btnLeerFactura.addActionListener(e -> abrirLeerFactura());
-		btnListarFacturas.addActionListener(e -> abrirListarFacturas());
-		btnListarPorCliente.addActionListener(e -> abrirListarPorCliente());
-		btnListarPorVendedor.addActionListener(e -> abrirListarPorVendedor());
+		btnCerrar.addActionListener(e -> abrirCerrarVenta());
+		btnLeer.addActionListener(e -> abrirLeerFactura());
+		btnListar.addActionListener(e -> abrirListarFacturas());
+		btnListarCliente.addActionListener(e -> abrirListarPorCliente());
+		btnListarVendedor.addActionListener(e -> abrirListarPorVendedor());
 
-		panel.add(btnAbrirVenta);
+		panel.add(btnAbrir);
 		panel.add(btnAnadirLibro);
-		panel.add(btnCerrarVenta);
-		panel.add(btnLeerFactura);
-		panel.add(btnListarFacturas);
-		panel.add(btnListarPorCliente);
-		panel.add(btnListarPorVendedor);
+		panel.add(btnCerrar);
+		panel.add(btnLeer);
+		panel.add(btnListar);
+		panel.add(btnListarCliente);
+		panel.add(btnListarVendedor);
 
 		contenedor.add(panel, BorderLayout.CENTER);
 		return contenedor;
