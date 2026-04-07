@@ -35,11 +35,34 @@ public class ConexionBD {
 						activo INTEGER NOT NULL
 					);
 				""";
+		String sqlTablaFactura = """
+					CREATE TABLE IF NOT EXISTS factura (
+						id INTEGER PRIMARY KEY AUTOINCREMENT,
+						fecha TEXT NOT NULL,
+						total REAL NOT NULL,
+						cerrada INTEGER NOT NULL,
+						id_cliente INTEGER NOT NULL,
+						id_vendedor INTEGER NOT NULL
+					);
+				""";
+
+		String sqlTablaLineaFactura = """
+					CREATE TABLE IF NOT EXISTS linea_factura (
+						id INTEGER PRIMARY KEY AUTOINCREMENT,
+						id_factura INTEGER NOT NULL,
+						id_libro INTEGER NOT NULL,
+						cantidad INTEGER NOT NULL,
+						precio_unitario REAL NOT NULL,
+						subtotal REAL NOT NULL
+					);
+				""";
 
 		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
 
 			stmt.execute(sqlTablaVendedor);
 			stmt.execute(sqlTablaLibro);
+			stmt.execute(sqlTablaFactura);
+			stmt.execute(sqlTablaLineaFactura);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
