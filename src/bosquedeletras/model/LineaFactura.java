@@ -77,6 +77,11 @@ public class LineaFactura {
 		this.subtotal = subtotal;
 	}
 
+	public double calcularSubtotal() {
+		this.subtotal = this.cantidad * this.precioUnitario;
+		return this.subtotal;
+	}
+
 	// toString útil para debug
 	@Override
 	public String toString() {
