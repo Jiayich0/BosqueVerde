@@ -1,74 +1,70 @@
 package bosquedeletras.view.factura;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.Frame;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import bosquedeletras.facade.SistemaBDL;
 
 public class AnadirLibroVentaDialog extends JDialog {
 
-	private JTextField txtIdFactura;
-	private JTextField txtIdLibro;
-	private JTextField txtCantidad;
-	private JTextField txtPrecio;
+	private static final long serialVersionUID = 1L;
 
-	public AnadirLibroVentaDialog(java.awt.Frame owner) {
-		super(owner, "Añadir libro a venta", true);
+	private FormularioAnadirLibroPanel formulario;
 
-		setSize(350, 250);
-		setLocationRelativeTo(owner);
-		setLayout(new BorderLayout());
+	public AnadirLibroVentaDialog(Frame parent) {
+		super(parent, "AÑADIR LIBRO A VENTA", true);
+		setSize(500, 280);
+		setLocationRelativeTo(parent);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-		JPanel panelCampos = new JPanel(new GridLayout(4, 2, 5, 5));
-
-		panelCampos.add(new JLabel("ID Factura:"));
-		txtIdFactura = new JTextField();
-		panelCampos.add(txtIdFactura);
-
-		panelCampos.add(new JLabel("ID Libro:"));
-		txtIdLibro = new JTextField();
-		panelCampos.add(txtIdLibro);
-
-		panelCampos.add(new JLabel("Cantidad:"));
-		txtCantidad = new JTextField();
-		panelCampos.add(txtCantidad);
-
-		panelCampos.add(new JLabel("Precio unitario:"));
-		txtPrecio = new JTextField();
-		panelCampos.add(txtPrecio);
-
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(e -> anadirLibro());
-
-		add(panelCampos, BorderLayout.CENTER);
-		add(btnAceptar, BorderLayout.SOUTH);
+		initComponents();
 	}
 
-	private void anadirLibro() {
-		try {
-			int idFactura = Integer.parseInt(txtIdFactura.getText().trim());
-			int idLibro = Integer.parseInt(txtIdLibro.getText().trim());
-			int cantidad = Integer.parseInt(txtCantidad.getText().trim());
-			double precio = Double.parseDouble(txtPrecio.getText().trim());
+	private void initComponents() {
+		setLayout(new BorderLayout());
 
-			boolean ok = SistemaBDL.getInstance().anadirLibroAVenta(idFactura, idLibro, cantidad, precio);
+		formulario = new FormularioAnadirLibroPanel();
+		add(formulario, BorderLayout.CENTER);
+
+		JPanel panelBotones = new JPanel();
+
+		JButton btnOk = new JButton("OK");
+		JButton btnCancelar = new JButton("Cancelar");
+
+		btnOk.addActionListener(e -> aceptar());
+		btnCancelar.addActionListener(e -> dispose());
+
+		panelBotones.add(btnOk);
+		panelBotones.add(btnCancelar);
+
+		add(panelBotones, BorderLayout.SOUTH);
+	}
+
+	private void aceptar() {
+		try {
+			int idFactura = formulario.getIdFactura();
+			int idLibro = formulario.getIdLibro();
+			int cantidad = formulario.getCantidad();
+			double precioUnitario = formulario.getPrecioUnitario();
+
+			boolean ok = SistemaBDL.getInstance().anadirLibroAVenta(idFactura, idLibro, cantidad, precioUnitario);
 
 			if (ok) {
-				JOptionPane.showMessageDialog(this, "Libro añadido correctamente.");
+				JOptionPane.showMessageDialog(this, "Libro añadido a la venta correctamente.",
+						"OPERACIÓN CORRECTA", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			} else {
-				JOptionPane.showMessageDialog(this, "No se pudo añadir el libro.", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "No se ha podido añadir el libro a la venta.",
+						"ERROR OPERACIÓN", JOptionPane.ERROR_MESSAGE);
 			}
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(this, "Datos no válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
