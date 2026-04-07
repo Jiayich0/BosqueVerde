@@ -1,67 +1,76 @@
 package bosquedeletras.view.factura;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.Frame;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import bosquedeletras.facade.SistemaBDL;
 
 public class AbrirVentaDialog extends JDialog {
 
-	private JTextField txtFecha;
-	private JTextField txtIdCliente;
-	private JTextField txtIdVendedor;
+	private static final long serialVersionUID = 1L;
 
-	public AbrirVentaDialog(java.awt.Frame owner) {
-		super(owner, "Abrir venta", true);
+	private FormularioFacturaPanel formulario;
 
-		setSize(350, 220);
-		setLocationRelativeTo(owner);
-		setLayout(new BorderLayout());
+	public AbrirVentaDialog(Frame parent) {
+		super(parent, "ABRIR VENTA", true);
+		setSize(500, 240);
+		setLocationRelativeTo(parent);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-		JPanel panelCampos = new JPanel(new GridLayout(3, 2, 5, 5));
-		panelCampos.add(new JLabel("Fecha:"));
-		txtFecha = new JTextField();
-		panelCampos.add(txtFecha);
-
-		panelCampos.add(new JLabel("ID Cliente:"));
-		txtIdCliente = new JTextField();
-		panelCampos.add(txtIdCliente);
-
-		panelCampos.add(new JLabel("ID Vendedor:"));
-		txtIdVendedor = new JTextField();
-		panelCampos.add(txtIdVendedor);
-
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(e -> abrirVenta());
-
-		add(panelCampos, BorderLayout.CENTER);
-		add(btnAceptar, BorderLayout.SOUTH);
+		initComponents();
 	}
 
-	private void abrirVenta() {
+	private void initComponents() {
+		setLayout(new BorderLayout());
+
+		formulario = new FormularioFacturaPanel();
+		add(formulario, BorderLayout.CENTER);
+
+		JPanel panelBotones = new JPanel();
+
+		JButton btnOk = new JButton("OK");
+		JButton btnCancelar = new JButton("Cancelar");
+
+		btnOk.addActionListener(e -> aceptar());
+		btnCancelar.addActionListener(e -> dispose());
+
+		panelBotones.add(btnOk);
+		panelBotones.add(btnCancelar);
+
+		add(panelBotones, BorderLayout.SOUTH);
+	}
+
+	private void aceptar() {
 		try {
-			String fecha = txtFecha.getText().trim();
-			int idCliente = Integer.parseInt(txtIdCliente.getText().trim());
-			int idVendedor = Integer.parseInt(txtIdVendedor.getText().trim());
+			String fecha = formulario.getFecha();
+			int idCliente = formulario.getIdCliente();
+			int idVendedor = formulario.getIdVendedor();
+
+			if (fecha.isEmpty()) {
+				JOptionPane.showMessageDialog(this, "La fecha es obligatoria.", "DATOS INCOMPLETOS",
+						JOptionPane.WARNING_MESSAGE);
+				return;
+			}
 
 			int idFactura = SistemaBDL.getInstance().abrirVenta(fecha, idCliente, idVendedor);
 
 			if (idFactura > 0) {
-				JOptionPane.showMessageDialog(this, "Venta abierta correctamente. ID factura: " + idFactura);
+				JOptionPane.showMessageDialog(this, "Venta abierta correctamente. ID factura: " + idFactura,
+						"APERTURA CORRECTA", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			} else {
-				JOptionPane.showMessageDialog(this, "No se pudo abrir la venta.", "Error",
-						JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this,
+						"No se ha podido abrir la venta. Comprueba cliente, vendedor y fecha.",
+						"ERROR APERTURA", JOptionPane.ERROR_MESSAGE);
 			}
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(this, "Datos no válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
