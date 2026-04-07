@@ -8,8 +8,11 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import bosquedeletras.facade.SistemaBDL;
+import bosquedeletras.model.Factura;
 import bosquedeletras.view.MainWindow;
 
 public class FacturaWindow extends JFrame {
@@ -102,8 +105,28 @@ public class FacturaWindow extends JFrame {
 	}
 
 	private void abrirLeerFactura() {
-		LeerFacturaDialog dialog = new LeerFacturaDialog(this);
-		dialog.setVisible(true);
+		String input = JOptionPane.showInputDialog(this, "Introduce el ID de la factura:");
+		if (input == null || input.isBlank()) {
+			return;
+		}
+
+		try {
+			int idFactura = Integer.parseInt(input);
+			Factura factura = SistemaBDL.getInstance().getControlFactura().leerFactura(idFactura);
+
+			if (factura == null) {
+				JOptionPane.showMessageDialog(this, "No existe ninguna factura con ese ID.", "ERROR",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			LeerFacturaDialog dialog = new LeerFacturaDialog(this, factura);
+			dialog.setVisible(true);
+
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "El ID debe ser numérico.", "ERROR",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void abrirListarFacturas() {

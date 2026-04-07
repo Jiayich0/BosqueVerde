@@ -52,7 +52,7 @@ public class AnadirLibroVentaDialog extends JDialog {
 			int cantidad = formulario.getCantidad();
 			double precioUnitario = formulario.getPrecioUnitario();
 
-			boolean ok = SistemaBDL.getInstance().anadirLibroAVenta(idFactura, idLibro, cantidad, precioUnitario);
+			boolean ok = SistemaBDL.getInstance().getControlFactura().anadirLibroAVenta(idFactura, idLibro, cantidad, precioUnitario);
 
 			if (ok) {
 				JOptionPane.showMessageDialog(this, "Libro añadido a la venta correctamente.",

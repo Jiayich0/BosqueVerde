@@ -74,7 +74,7 @@ public class ListarFacturasPorVendedorDialog extends JDialog {
 			int idVendedor = Integer.parseInt(txtIdVendedor.getText().trim());
 
 			modeloTabla.setRowCount(0);
-			List<Factura> facturas = SistemaBDL.getInstance().listarFacturasPorVendedor(idVendedor);
+			List<Factura> facturas = SistemaBDL.getInstance().getControlFactura().listarFacturasPorVendedor(idVendedor);
 
 			for (Factura f : facturas) {
 				Object[] fila = { f.getId(), f.getFecha(), f.getIdCliente(), f.getIdVendedor(), f.getTotal(),

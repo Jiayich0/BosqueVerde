@@ -17,7 +17,7 @@ public class ControlFactura {
 		this.daoLineaFactura = new DAOLineaFactura();
 	}
 
-	public boolean abrirVenta(String fecha, int idCliente, int idVendedor) {
+	public int abrirVenta(String fecha, int idCliente, int idVendedor) {
 		Factura nuevaFactura = new Factura(fecha, idCliente, idVendedor);
 		return daoFactura.insertar(nuevaFactura);
 	}

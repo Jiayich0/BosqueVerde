@@ -26,13 +26,13 @@
 - [ ] Crear las strategy
 - [ ] Implementar
 ### 7. Reparto trabajo
-- [ ] Crear README general
+- [x] Crear README general
 - [x] Crear GUIA interna
 - [x] Compartir reparto con el equipo
 
 # Completar proyecto
 ### 1. Realización de cada miembro
-- [ ] Carlos L.
+- [x] Carlos L.
 - [ ] Carlos T.
 - [ ] Nuria.
 - [ ] Pablo

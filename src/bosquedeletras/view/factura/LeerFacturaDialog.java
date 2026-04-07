@@ -1,7 +1,7 @@
 package bosquedeletras.view.factura;
 
 import java.awt.BorderLayout;
-import java.awt.Dialog;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.List;
@@ -24,7 +24,7 @@ public class LeerFacturaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	public LeerFacturaDialog(Dialog parent, Factura factura) {
+	public LeerFacturaDialog(Frame parent, Factura factura) {
 		super(parent, "LEER FACTURA", true);
 		setSize(800, 450);
 		setLocationRelativeTo(parent);
@@ -92,7 +92,7 @@ public class LeerFacturaDialog extends JDialog {
 		JTextArea areaLineas = new JTextArea();
 		areaLineas.setEditable(false);
 
-		List<LineaFactura> lineas = SistemaBDL.getInstance().leerLineasFactura(factura.getId());
+		List<LineaFactura> lineas = SistemaBDL.getInstance().getControlFactura().leerLineasFactura(factura.getId());
 		StringBuilder sb = new StringBuilder();
 		for (LineaFactura linea : lineas) {
 			sb.append(linea).append("\n");

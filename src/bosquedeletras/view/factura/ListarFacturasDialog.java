@@ -60,7 +60,7 @@ public class ListarFacturasDialog extends JDialog {
 	private void cargarFacturas() {
 		modeloTabla.setRowCount(0);
 
-		List<Factura> facturas = SistemaBDL.getInstance().listarFacturas();
+		List<Factura> facturas = SistemaBDL.getInstance().getControlFactura().listarFacturas();
 
 		for (Factura f : facturas) {
 			Object[] fila = { f.getId(), f.getFecha(), f.getIdCliente(), f.getIdVendedor(), f.getTotal(),

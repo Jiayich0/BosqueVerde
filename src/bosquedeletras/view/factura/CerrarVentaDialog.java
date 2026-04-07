@@ -56,7 +56,7 @@ public class CerrarVentaDialog extends JDialog {
 		try {
 			int idFactura = Integer.parseInt(txtIdFactura.getText().trim());
 
-			Factura factura = SistemaBDL.getInstance().leerFactura(idFactura);
+			Factura factura = SistemaBDL.getInstance().getControlFactura().leerFactura(idFactura);
 			if (factura == null) {
 				JOptionPane.showMessageDialog(this, "No existe una factura con ese ID.",
 						"NO EXISTE - CERRAR VENTA", JOptionPane.ERROR_MESSAGE);
@@ -71,7 +71,7 @@ public class CerrarVentaDialog extends JDialog {
 				return;
 			}
 
-			boolean cierreCorrecto = SistemaBDL.getInstance().cerrarVenta(idFactura);
+			boolean cierreCorrecto = SistemaBDL.getInstance().getControlFactura().cerrarVenta(idFactura);
 
 			if (cierreCorrecto) {
 				JOptionPane.showMessageDialog(this, "Venta cerrada correctamente.", "CIERRE CORRECTO",

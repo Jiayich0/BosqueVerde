@@ -57,7 +57,7 @@ public class AbrirVentaDialog extends JDialog {
 				return;
 			}
 
-			int idFactura = SistemaBDL.getInstance().abrirVenta(fecha, idCliente, idVendedor);
+			int idFactura = SistemaBDL.getInstance().getControlFactura().abrirVenta(fecha, idCliente, idVendedor);
 
 			if (idFactura > 0) {
 				JOptionPane.showMessageDialog(this, "Venta abierta correctamente. ID factura: " + idFactura,
