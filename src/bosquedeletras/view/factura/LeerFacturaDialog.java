@@ -1,90 +1,78 @@
 package bosquedeletras.view.factura;
 
 import java.awt.BorderLayout;
-import java.awt.Frame;
+import java.awt.Dialog;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import bosquedeletras.facade.SistemaBDL;
 import bosquedeletras.model.Factura;
 import bosquedeletras.model.LineaFactura;
+import bosquedeletras.utils.Utils;
 
 public class LeerFacturaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtIdFactura;
-	private JTextArea areaLineas;
-	private JPanel panelDatos;
-
-	public LeerFacturaDialog(Frame parent) {
+	public LeerFacturaDialog(Dialog parent, Factura factura) {
 		super(parent, "LEER FACTURA", true);
-		setSize(700, 450);
+		setSize(800, 450);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-		initComponents();
+		initComponents(factura);
 	}
 
-	private void initComponents() {
+	private void initComponents(Factura factura) {
 		setLayout(new BorderLayout(15, 15));
 
-		JPanel panelSuperior = new JPanel();
-		panelSuperior.add(new JLabel("ID Factura:"));
-		txtIdFactura = new JTextField(15);
-		panelSuperior.add(txtIdFactura);
+		JPanel panelCentral = new JPanel(new GridLayout(1, 2, 20, 20));
+		panelCentral.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(e -> buscarFactura());
-		panelSuperior.add(btnBuscar);
+		JPanel panelImagen = crearPanelImagen();
+		JPanel panelDerecho = crearPanelDerecho(factura);
 
-		add(panelSuperior, BorderLayout.NORTH);
+		panelCentral.add(panelImagen);
+		panelCentral.add(panelDerecho);
 
-		panelDatos = new JPanel(new GridLayout(5, 2, 10, 12));
-		add(panelDatos, BorderLayout.CENTER);
+		add(panelCentral, BorderLayout.CENTER);
 
-		areaLineas = new JTextArea();
-		areaLineas.setEditable(false);
-		add(new JScrollPane(areaLineas), BorderLayout.SOUTH);
+		JPanel panelBoton = new JPanel();
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(e -> dispose());
+		panelBoton.add(btnOk);
 
-		JPanel panelInferior = new JPanel();
-		JButton btnCerrar = new JButton("Cerrar");
-		btnCerrar.addActionListener(e -> dispose());
-		panelInferior.add(btnCerrar);
-
-		add(panelInferior, BorderLayout.PAGE_END);
+		add(panelBoton, BorderLayout.SOUTH);
 	}
 
-	private void buscarFactura() {
-		try {
-			int idFactura = Integer.parseInt(txtIdFactura.getText().trim());
+	private JPanel crearPanelImagen() {
+		JPanel panel = new JPanel(new BorderLayout());
 
-			Factura factura = SistemaBDL.getInstance().leerFactura(idFactura);
-			if (factura == null) {
-				JOptionPane.showMessageDialog(this, "La factura indicada no existe.", "NO EXISTE",
-						JOptionPane.ERROR_MESSAGE);
-				return;
-			}
+		JLabel lblImagen = new JLabel();
+		lblImagen.setHorizontalAlignment(JLabel.CENTER);
 
-			mostrarFactura(factura);
+		ImageIcon icon = new ImageIcon(Utils.FACTURA_IMG);
+		Image imagenEscalada = icon.getImage().getScaledInstance(-1, 260, Image.SCALE_SMOOTH);
+		lblImagen.setIcon(new ImageIcon(imagenEscalada));
 
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO",
-					JOptionPane.ERROR_MESSAGE);
-		}
+		panel.add(lblImagen, BorderLayout.CENTER);
+		return panel;
 	}
 
-	private void mostrarFactura(Factura factura) {
-		panelDatos.removeAll();
+	private JPanel crearPanelDerecho(Factura factura) {
+		JPanel panel = new JPanel(new BorderLayout(10, 10));
+
+		JPanel panelDatos = new JPanel(new GridLayout(5, 2, 10, 12));
 
 		panelDatos.add(new JLabel("ID:"));
 		panelDatos.add(new JLabel(String.valueOf(factura.getId())));
@@ -101,6 +89,9 @@ public class LeerFacturaDialog extends JDialog {
 		panelDatos.add(new JLabel("Total:"));
 		panelDatos.add(new JLabel(String.valueOf(factura.getTotal())));
 
+		JTextArea areaLineas = new JTextArea();
+		areaLineas.setEditable(false);
+
 		List<LineaFactura> lineas = SistemaBDL.getInstance().leerLineasFactura(factura.getId());
 		StringBuilder sb = new StringBuilder();
 		for (LineaFactura linea : lineas) {
@@ -108,7 +99,9 @@ public class LeerFacturaDialog extends JDialog {
 		}
 		areaLineas.setText(sb.toString());
 
-		panelDatos.revalidate();
-		panelDatos.repaint();
+		panel.add(panelDatos, BorderLayout.NORTH);
+		panel.add(new JScrollPane(areaLineas), BorderLayout.CENTER);
+
+		return panel;
 	}
 }
