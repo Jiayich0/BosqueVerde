@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class FormularioAnadirLibroPanel extends JPanel {
+public class FormularioLineaFacturaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,7 +16,7 @@ public class FormularioAnadirLibroPanel extends JPanel {
 	private JTextField txtCantidad;
 	private JTextField txtPrecioUnitario;
 
-	public FormularioAnadirLibroPanel() {
+	public FormularioLineaFacturaPanel() {
 		setLayout(new GridLayout(4, 2, 10, 10));
 		setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
 
@@ -51,21 +51,5 @@ public class FormularioAnadirLibroPanel extends JPanel {
 
 	public double getPrecioUnitario() {
 		return Double.parseDouble(txtPrecioUnitario.getText().trim());
-	}
-
-	public void setIdFactura(int idFactura) {
-		txtIdFactura.setText(String.valueOf(idFactura));
-	}
-
-	public void setIdLibro(int idLibro) {
-		txtIdLibro.setText(String.valueOf(idLibro));
-	}
-
-	public void setCantidad(int cantidad) {
-		txtCantidad.setText(String.valueOf(cantidad));
-	}
-
-	public void setPrecioUnitario(double precioUnitario) {
-		txtPrecioUnitario.setText(String.valueOf(precioUnitario));
 	}
 }
