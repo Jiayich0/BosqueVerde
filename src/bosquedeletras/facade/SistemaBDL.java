@@ -4,11 +4,15 @@ import java.util.List;
 
 import bosquedeletras.model.Vendedor;
 
+import bosquedeletras.model.Factura;
+import bosquedeletras.model.LineaFactura;
+
 public class SistemaBDL {
 
 	private static SistemaBDL instancia;
 	private ControlVendedor controlVendedor;
 	private ControlLibro controlLibro;
+	private ControlFactura controlFactura;
 
 	private SistemaBDL() {
 		this.controlVendedor = new ControlVendedor();
