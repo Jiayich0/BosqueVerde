@@ -3,22 +3,21 @@ package bosquedeletras.model;
 public class Categoria {
 
     private int id;
-    private boolean activo;
-
     private String nombre;
     private String descripcion;
+    private boolean activo;
 
-    public Categoria(String nombre, String descripcion) {
-        this.activo = true;
+    public Categoria(String nombre, String descripcion) {  
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.activo = true;
     }
 
     public Categoria(int id, String nombre, String descripcion, boolean activo) {
         this.id = id;
-        this.activo = activo;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.activo = activo;
     }
 
     public int getId() {

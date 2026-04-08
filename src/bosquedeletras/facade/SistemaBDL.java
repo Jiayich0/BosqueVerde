@@ -6,11 +6,13 @@ public class SistemaBDL {
 	private ControlVendedor controlVendedor;
 	private ControlLibro controlLibro;
 	private ControlFactura controlFactura;
+	private ControlCategoria controlCategoria;
 
 	private SistemaBDL() {
 		this.controlVendedor = new ControlVendedor();
 		this.controlLibro = new ControlLibro();
 		this.controlFactura = new ControlFactura();
+		this.controlCategoria = new ControlCategoria();
 	}
 
 	public static SistemaBDL getInstance() {
@@ -30,5 +32,9 @@ public class SistemaBDL {
 	
 	public ControlFactura getControlFactura() {
 		return controlFactura;
+	}
+	
+	public ControlCategoria getControlCategoria() {
+		return controlCategoria;
 	}
 }

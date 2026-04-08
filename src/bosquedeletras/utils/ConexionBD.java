@@ -57,6 +57,15 @@ public class ConexionBD {
 						subtotal REAL NOT NULL
 					);
 				""";
+		
+		String sqlTablaCategoria = """
+				CREATE TABLE IF NOT EXISTS categoria (
+					id INTEGER PRIMARY KEY AUTOINCREMENT,
+					nombre TEXT UNIQUE NOT NULL,
+					descripcion TEXT,
+					activo INTEGER NOT NULL
+				);
+			""";
 
 		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
 
@@ -64,6 +73,7 @@ public class ConexionBD {
 			stmt.execute(sqlTablaLibro);
 			stmt.execute(sqlTablaFactura);
 			stmt.execute(sqlTablaLineaFactura);
+			stmt.execute(sqlTablaCategoria);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
