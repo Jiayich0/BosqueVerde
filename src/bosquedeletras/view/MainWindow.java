@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import bosquedeletras.utils.Utils;
 import bosquedeletras.view.vendedor.VendedorWindow;
 import bosquedeletras.view.libro.LibroWindow;
+import bosquedeletras.view.categoria.CategoriaWindow;
 
 public class MainWindow extends JFrame {
 
@@ -69,7 +70,9 @@ public class MainWindow extends JFrame {
 
 		btnVendedor.addActionListener(e -> abrirVendedor());
 		btnLibro.addActionListener(e -> abrirLibro());
-
+		btnCategoria.addActionListener(e -> abrirCategoria());
+		
+		
 		panel.add(btnCliente);
 		panel.add(btnVendedor);
 		panel.add(btnLibro);
@@ -96,6 +99,11 @@ public class MainWindow extends JFrame {
 	private void abrirLibro() {
 		LibroWindow ventanaLibro = new LibroWindow();
 		ventanaLibro.setVisible(true);
+		dispose();
+	}
+	private void abrirCategoria() {
+		CategoriaWindow ventanaCategoria = new CategoriaWindow();
+		ventanaCategoria.setVisible(true);
 		dispose();
 	}
 }
