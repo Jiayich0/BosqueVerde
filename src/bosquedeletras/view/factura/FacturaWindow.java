@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import bosquedeletras.facade.SistemaBDL;
-import bosquedeletras.model.Factura;
+import bosquedeletras.model.*;
 import bosquedeletras.view.MainWindow;
 
 public class FacturaWindow extends JFrame {

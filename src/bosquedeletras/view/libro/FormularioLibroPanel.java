@@ -81,4 +81,16 @@ public class FormularioLibroPanel extends JPanel {
     public void setAno(String ano) {
         txtAno.setText(ano);
     }
+
+    public void setIsbnEditable(boolean editable) {
+        txtIsbn.setEditable(editable);
+    }
+
+    public void setAllEditable(boolean editable) {
+        txtTitulo.setEditable(editable);
+        txtAutor.setEditable(editable);
+        txtIsbn.setEditable(editable);
+        txtEditorial.setEditable(editable);
+        txtAno.setEditable(editable);
+    }
 }

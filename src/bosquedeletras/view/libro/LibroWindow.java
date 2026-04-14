@@ -30,12 +30,18 @@ public class LibroWindow extends JFrame {
         panelBotones.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JButton btnAlta = crearBotonSubsistema("ALTA LIBRO");
+        JButton btnModificar = crearBotonSubsistema("MODIFICAR LIBRO");
+        JButton btnLeer = crearBotonSubsistema("LEER LIBRO");
         JButton btnVolver = crearBotonSubsistema("VOLVER");
 
         btnAlta.addActionListener(e -> abrirAltaLibro());
+        btnModificar.addActionListener(e -> abrirModificarLibro());
+        btnLeer.addActionListener(e -> abrirLeerLibro());
         btnVolver.addActionListener(e -> dispose());
 
         panelBotones.add(btnAlta);
+        panelBotones.add(btnModificar);
+        panelBotones.add(btnLeer);
         panelBotones.add(btnVolver);
 
         add(panelBotones, BorderLayout.CENTER);
@@ -50,6 +56,16 @@ public class LibroWindow extends JFrame {
 
     private void abrirAltaLibro() {
         AltaLibroDialog dialog = new AltaLibroDialog(this);
+        dialog.setVisible(true);
+    }
+
+    private void abrirModificarLibro() {
+        BuscarLibroDialog dialog = new BuscarLibroDialog(this, "modificar");
+        dialog.setVisible(true);
+    }
+
+    private void abrirLeerLibro() {
+        BuscarLibroDialog dialog = new BuscarLibroDialog(this, "leer");
         dialog.setVisible(true);
     }
 }
