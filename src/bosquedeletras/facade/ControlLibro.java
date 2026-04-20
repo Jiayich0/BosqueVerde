@@ -62,11 +62,6 @@ public class ControlLibro {
 		return daoLibro.buscarPorIsbn(isbn);
 	}
 
-	// TODO quitar
-	public List<Libro> listarLibros() {
-		return daoLibro.listar();
-	}
-
 	public List<Libro> listarLibros(SortStrategy<Libro> strategy) {
 		List<Libro> lista = daoLibro.listar();
 

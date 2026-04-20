@@ -18,7 +18,7 @@ public class AltaLibroDialog extends JDialog {
 
 	public AltaLibroDialog(Frame parent) {
 		super(parent, "ALTA LIBRO", true);
-		setSize(520, 320);
+		setSize(500, 300);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
@@ -32,6 +32,7 @@ public class AltaLibroDialog extends JDialog {
 		add(formulario, BorderLayout.CENTER);
 
 		JPanel panelBotones = new JPanel();
+
 		JButton btnOk = new JButton("OK");
 		JButton btnCancelar = new JButton("Cancelar");
 
