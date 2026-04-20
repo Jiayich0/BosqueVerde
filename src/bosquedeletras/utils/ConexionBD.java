@@ -35,7 +35,7 @@ public class ConexionBD {
 						activo INTEGER NOT NULL
 					);
 				""";
-		
+
 		String sqlTablaFactura = """
 					CREATE TABLE IF NOT EXISTS factura (
 						id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -57,15 +57,15 @@ public class ConexionBD {
 						subtotal REAL NOT NULL
 					);
 				""";
-		
+
 		String sqlTablaCategoria = """
-				CREATE TABLE IF NOT EXISTS categoria (
-					id INTEGER PRIMARY KEY AUTOINCREMENT,
-					nombre TEXT UNIQUE NOT NULL,
-					descripcion TEXT,
-					activo INTEGER NOT NULL
-				);
-			""";
+					CREATE TABLE IF NOT EXISTS categoria (
+						id INTEGER PRIMARY KEY AUTOINCREMENT,
+						nombre TEXT UNIQUE NOT NULL,
+						descripcion TEXT,
+						activo INTEGER NOT NULL
+					);
+				""";
 
 		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
 

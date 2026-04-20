@@ -89,7 +89,7 @@ public class CategoriaWindow extends JFrame {
 		BajaCategoriaDialog dialog = new BajaCategoriaDialog(this);
 		dialog.setVisible(true);
 	}
-	
+
 	private void abrirModificar() {
 		BuscarCategoriaDialog dialog = new BuscarCategoriaDialog(this, "modificar");
 		dialog.setVisible(true);
@@ -101,8 +101,8 @@ public class CategoriaWindow extends JFrame {
 	}
 
 	private void abrirListar() {
-	    ListarCategoriasDialog dialog = new ListarCategoriasDialog(this);
-	    dialog.setVisible(true);
+		ListarCategoriasDialog dialog = new ListarCategoriasDialog(this);
+		dialog.setVisible(true);
 	}
 
 	private void volverMenuPrincipal() {

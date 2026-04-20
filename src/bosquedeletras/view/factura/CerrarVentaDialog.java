@@ -58,14 +58,14 @@ public class CerrarVentaDialog extends JDialog {
 
 			Factura factura = SistemaBDL.getInstance().getControlFactura().leerFactura(idFactura);
 			if (factura == null) {
-				JOptionPane.showMessageDialog(this, "No existe una factura con ese ID.",
-						"NO EXISTE - CERRAR VENTA", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "No existe una factura con ese ID.", "NO EXISTE - CERRAR VENTA",
+						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 
 			int confirmacion = JOptionPane.showConfirmDialog(this,
-					"¿Seguro que quieres cerrar la venta con ID " + idFactura + "?",
-					"CONFIRMAR CIERRE", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+					"¿Seguro que quieres cerrar la venta con ID " + idFactura + "?", "CONFIRMAR CIERRE",
+					JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
 			if (confirmacion != JOptionPane.YES_OPTION) {
 				return;

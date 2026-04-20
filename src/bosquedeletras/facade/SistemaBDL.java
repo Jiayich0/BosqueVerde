@@ -21,7 +21,7 @@ public class SistemaBDL {
 		}
 		return instancia;
 	}
-	
+
 	public ControlVendedor getControlVendedor() {
 		return controlVendedor;
 	}
@@ -29,11 +29,11 @@ public class SistemaBDL {
 	public ControlLibro getControlLibro() {
 		return controlLibro;
 	}
-	
+
 	public ControlFactura getControlFactura() {
 		return controlFactura;
 	}
-	
+
 	public ControlCategoria getControlCategoria() {
 		return controlCategoria;
 	}

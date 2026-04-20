@@ -71,8 +71,7 @@ public class MainWindow extends JFrame {
 		btnVendedor.addActionListener(e -> abrirVendedor());
 		btnLibro.addActionListener(e -> abrirLibro());
 		btnCategoria.addActionListener(e -> abrirCategoria());
-		
-		
+
 		panel.add(btnCliente);
 		panel.add(btnVendedor);
 		panel.add(btnLibro);
@@ -101,6 +100,7 @@ public class MainWindow extends JFrame {
 		ventanaLibro.setVisible(true);
 		dispose();
 	}
+
 	private void abrirCategoria() {
 		CategoriaWindow ventanaCategoria = new CategoriaWindow();
 		ventanaCategoria.setVisible(true);

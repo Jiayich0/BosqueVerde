@@ -124,8 +124,7 @@ public class FacturaWindow extends JFrame {
 			dialog.setVisible(true);
 
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(this, "El ID debe ser numérico.", "ERROR",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "El ID debe ser numérico.", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

@@ -143,12 +143,7 @@ public class DAOFactura {
 	}
 
 	private Factura mapearFactura(ResultSet rs) throws SQLException {
-		return new Factura(
-				rs.getInt("id"),
-				rs.getString("fecha"),
-				rs.getDouble("total"),
-				rs.getInt("cerrada") == 1,
-				rs.getInt("id_cliente"),
-				rs.getInt("id_vendedor"));
+		return new Factura(rs.getInt("id"), rs.getString("fecha"), rs.getDouble("total"), rs.getInt("cerrada") == 1,
+				rs.getInt("id_cliente"), rs.getInt("id_vendedor"));
 	}
 }

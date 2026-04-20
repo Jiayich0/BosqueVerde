@@ -8,61 +8,61 @@ import bosquedeletras.strategy.SortStrategy;
 
 public class ControlCategoria {
 
-    private DAOCategoria daoCategoria;
+	private DAOCategoria daoCategoria;
 
-    public ControlCategoria() {
-        this.daoCategoria = new DAOCategoria();
-    }
+	public ControlCategoria() {
+		this.daoCategoria = new DAOCategoria();
+	}
 
-    public boolean altaCategoria(String nombre, String descripcion) {
-        Categoria categoriaExistente = daoCategoria.buscarPorNombreTotal(nombre);
+	public boolean altaCategoria(String nombre, String descripcion) {
+		Categoria categoriaExistente = daoCategoria.buscarPorNombreTotal(nombre);
 
-        if (categoriaExistente == null) {
-            Categoria nuevaCategoria = new Categoria(nombre, descripcion);
-            return daoCategoria.insertar(nuevaCategoria);
-        }
+		if (categoriaExistente == null) {
+			Categoria nuevaCategoria = new Categoria(nombre, descripcion);
+			return daoCategoria.insertar(nuevaCategoria);
+		}
 
-        if (categoriaExistente.isActivo()) {
-            return false;
-        }
+		if (categoriaExistente.isActivo()) {
+			return false;
+		}
 
-        boolean reactivada = daoCategoria.reactivar(nombre);
-        if (!reactivada) {
-            return false;
-        }
+		boolean reactivada = daoCategoria.reactivar(nombre);
+		if (!reactivada) {
+			return false;
+		}
 
-        categoriaExistente.setDescripcion(descripcion);
+		categoriaExistente.setDescripcion(descripcion);
 
-        return daoCategoria.actualizar(categoriaExistente);
-    }
+		return daoCategoria.actualizar(categoriaExistente);
+	}
 
-    public boolean bajaCategoria(String nombre) {
-        return daoCategoria.bajaLogica(nombre);
-    }
+	public boolean bajaCategoria(String nombre) {
+		return daoCategoria.bajaLogica(nombre);
+	}
 
-    public boolean modificarCategoria(String nombre, String descripcion) {
-        Categoria categoria = daoCategoria.buscarPorNombre(nombre);
+	public boolean modificarCategoria(String nombre, String descripcion) {
+		Categoria categoria = daoCategoria.buscarPorNombre(nombre);
 
-        if (categoria == null) {
-            return false;
-        }
+		if (categoria == null) {
+			return false;
+		}
 
-        categoria.setDescripcion(descripcion);
+		categoria.setDescripcion(descripcion);
 
-        return daoCategoria.actualizar(categoria);
-    }
+		return daoCategoria.actualizar(categoria);
+	}
 
-    public Categoria leerCategoria(String nombre) {
-        return daoCategoria.buscarPorNombre(nombre);
-    }
+	public Categoria leerCategoria(String nombre) {
+		return daoCategoria.buscarPorNombre(nombre);
+	}
 
-    public List<Categoria> listarCategorias(SortStrategy<Categoria> strategy) {
-        List<Categoria> lista = daoCategoria.listar();
-        
-        if (strategy != null) {
+	public List<Categoria> listarCategorias(SortStrategy<Categoria> strategy) {
+		List<Categoria> lista = daoCategoria.listar();
+
+		if (strategy != null) {
 			strategy.sort(lista);
 		}
-		
+
 		return lista;
-    }
+	}
 }

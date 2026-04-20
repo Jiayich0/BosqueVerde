@@ -56,8 +56,8 @@ public class BajaCategoriaDialog extends JDialog {
 		String nombre = txtNombre.getText().trim();
 
 		if (nombre.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO - BAJA CATEGORIA",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.",
+					"INCORRECTO - BAJA CATEGORIA", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 

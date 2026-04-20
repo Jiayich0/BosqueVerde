@@ -66,11 +66,11 @@ public class ControlVendedor {
 
 	public List<Vendedor> listarVendedores(SortStrategy<Vendedor> strategy) {
 		List<Vendedor> lista = daoVendedor.listar();
-		
+
 		if (strategy != null) {
 			strategy.sort(lista);
 		}
-		
+
 		return lista;
 	}
 }

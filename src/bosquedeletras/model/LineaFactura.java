@@ -88,8 +88,7 @@ public class LineaFactura implements Sortable {
 	// toString útil para debug
 	@Override
 	public String toString() {
-		return "LineaFactura #" + id + " | Factura: " + idFactura + " | Libro: " + idLibro
-				+ " | Cantidad: " + cantidad + " | Precio unitario: " + precioUnitario
-				+ " | Subtotal: " + subtotal;
+		return "LineaFactura #" + id + " | Factura: " + idFactura + " | Libro: " + idLibro + " | Cantidad: " + cantidad
+				+ " | Precio unitario: " + precioUnitario + " | Subtotal: " + subtotal;
 	}
 }

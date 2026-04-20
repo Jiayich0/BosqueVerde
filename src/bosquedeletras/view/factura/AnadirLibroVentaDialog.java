@@ -52,15 +52,16 @@ public class AnadirLibroVentaDialog extends JDialog {
 			int cantidad = formulario.getCantidad();
 			double precioUnitario = formulario.getPrecioUnitario();
 
-			boolean ok = SistemaBDL.getInstance().getControlFactura().anadirLibroAVenta(idFactura, idLibro, cantidad, precioUnitario);
+			boolean ok = SistemaBDL.getInstance().getControlFactura().anadirLibroAVenta(idFactura, idLibro, cantidad,
+					precioUnitario);
 
 			if (ok) {
-				JOptionPane.showMessageDialog(this, "Libro añadido a la venta correctamente.",
-						"OPERACIÓN CORRECTA", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Libro añadido a la venta correctamente.", "OPERACIÓN CORRECTA",
+						JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			} else {
-				JOptionPane.showMessageDialog(this, "No se ha podido añadir el libro a la venta.",
-						"ERROR OPERACIÓN", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "No se ha podido añadir el libro a la venta.", "ERROR OPERACIÓN",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO",

@@ -8,71 +8,72 @@ import bosquedeletras.strategy.SortStrategy;
 
 public class ControlLibro {
 
-    private DAOLibro daoLibro;
+	private DAOLibro daoLibro;
 
-    public ControlLibro() {
-        this.daoLibro = new DAOLibro();
-    }
+	public ControlLibro() {
+		this.daoLibro = new DAOLibro();
+	}
 
-    public boolean altaLibro(String titulo, String autor, String isbn, String editorial, int ano) {
-        Libro libroExistente = daoLibro.buscarPorIsbnTotal(isbn);
+	public boolean altaLibro(String titulo, String autor, String isbn, String editorial, int ano) {
+		Libro libroExistente = daoLibro.buscarPorIsbnTotal(isbn);
 
-        if (libroExistente == null) {
-            Libro nuevoLibro = new Libro(titulo, autor, isbn, editorial, ano);
-            return daoLibro.insertar(nuevoLibro);
-        }
+		if (libroExistente == null) {
+			Libro nuevoLibro = new Libro(titulo, autor, isbn, editorial, ano);
+			return daoLibro.insertar(nuevoLibro);
+		}
 
-        if (libroExistente.isActivo()) {
-            return false;
-        }
+		if (libroExistente.isActivo()) {
+			return false;
+		}
 
-        boolean reactivado = daoLibro.reactivar(isbn);
-        if (!reactivado) {
-            return false;
-        }
+		boolean reactivado = daoLibro.reactivar(isbn);
+		if (!reactivado) {
+			return false;
+		}
 
-        libroExistente.setTitulo(titulo);
-        libroExistente.setAutor(autor);
-        libroExistente.setEditorial(editorial);
-        libroExistente.setAno(ano);
+		libroExistente.setTitulo(titulo);
+		libroExistente.setAutor(autor);
+		libroExistente.setEditorial(editorial);
+		libroExistente.setAno(ano);
 
-        return daoLibro.actualizar(libroExistente);
-    }
+		return daoLibro.actualizar(libroExistente);
+	}
 
-    public boolean bajaLibro(String isbn) {
-        return daoLibro.bajaLogica(isbn);
-    }
+	public boolean bajaLibro(String isbn) {
+		return daoLibro.bajaLogica(isbn);
+	}
 
-    public boolean modificarLibro(String titulo, String autor, String isbn, String editorial, int ano) {
-        Libro libro = daoLibro.buscarPorIsbn(isbn);
+	public boolean modificarLibro(String titulo, String autor, String isbn, String editorial, int ano) {
+		Libro libro = daoLibro.buscarPorIsbn(isbn);
 
-        if (libro == null) {
-            return false;
-        }
+		if (libro == null) {
+			return false;
+		}
 
-        libro.setTitulo(titulo);
-        libro.setAutor(autor);
-        libro.setEditorial(editorial);
-        libro.setAno(ano);
+		libro.setTitulo(titulo);
+		libro.setAutor(autor);
+		libro.setEditorial(editorial);
+		libro.setAno(ano);
 
-        return daoLibro.actualizar(libro);
-    }
+		return daoLibro.actualizar(libro);
+	}
 
-    public Libro leerLibro(String isbn) {
-        return daoLibro.buscarPorIsbn(isbn);
-    }
-    
-	//TODO quitar
-    public List<Libro> listarLibros() {
-        return daoLibro.listar();
-    }
+	public Libro leerLibro(String isbn) {
+		return daoLibro.buscarPorIsbn(isbn);
+	}
+
+	// TODO quitar
+	public List<Libro> listarLibros() {
+		return daoLibro.listar();
+	}
+
 	public List<Libro> listarLibros(SortStrategy<Libro> strategy) {
 		List<Libro> lista = daoLibro.listar();
-		
+
 		if (strategy != null) {
 			strategy.sort(lista);
 		}
-		
+
 		return lista;
 	}
 }

@@ -65,8 +65,8 @@ public class AbrirVentaDialog extends JDialog {
 				dispose();
 			} else {
 				JOptionPane.showMessageDialog(this,
-						"No se ha podido abrir la venta. Comprueba cliente, vendedor y fecha.",
-						"ERROR APERTURA", JOptionPane.ERROR_MESSAGE);
+						"No se ha podido abrir la venta. Comprueba cliente, vendedor y fecha.", "ERROR APERTURA",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO",

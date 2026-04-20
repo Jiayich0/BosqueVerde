@@ -48,7 +48,7 @@ public class ListarCategoriasDialog extends JDialog {
 				return false;
 			}
 		};
-		
+
 		comboOrden = new JComboBox<>();
 		comboOrden.addItem(new SortIdStrategy<Categoria>(true));
 		comboOrden.addItem(new SortIdStrategy<Categoria>(false));
@@ -56,7 +56,7 @@ public class ListarCategoriasDialog extends JDialog {
 		JPanel panelControl = new JPanel();
 		panelControl.add(new JLabel("Ordenar por:"));
 		panelControl.add(comboOrden);
-		
+
 		add(panelControl, BorderLayout.NORTH);
 
 		tabla = new JTable(modeloTabla);
@@ -74,18 +74,14 @@ public class ListarCategoriasDialog extends JDialog {
 
 	private void cargarCategorias() {
 		modeloTabla.setRowCount(0);
-		
+
 		@SuppressWarnings("unchecked")
 		SortStrategy<Categoria> strategy = (SortStrategy<Categoria>) comboOrden.getSelectedItem();
-		
+
 		List<Categoria> categorias = SistemaBDL.getInstance().getControlCategoria().listarCategorias(strategy);
 
 		for (Categoria c : categorias) {
-			Object[] fila = {
-				c.getId(),
-				c.getNombre(),
-				c.getDescripcion() != null ? c.getDescripcion() : "-"
-			};
+			Object[] fila = { c.getId(), c.getNombre(), c.getDescripcion() != null ? c.getDescripcion() : "-" };
 			modeloTabla.addRow(fila);
 		}
 	}

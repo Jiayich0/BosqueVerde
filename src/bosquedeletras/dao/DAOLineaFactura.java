@@ -112,12 +112,7 @@ public class DAOLineaFactura {
 	}
 
 	private LineaFactura mapearLineaFactura(ResultSet rs) throws SQLException {
-		return new LineaFactura(
-				rs.getInt("id"),
-				rs.getInt("id_factura"),
-				rs.getInt("id_libro"),
-				rs.getInt("cantidad"),
-				rs.getDouble("precio_unitario"),
-				rs.getDouble("subtotal"));
+		return new LineaFactura(rs.getInt("id"), rs.getInt("id_factura"), rs.getInt("id_libro"), rs.getInt("cantidad"),
+				rs.getDouble("precio_unitario"), rs.getDouble("subtotal"));
 	}
 }

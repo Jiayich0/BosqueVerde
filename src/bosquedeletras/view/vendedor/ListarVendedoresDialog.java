@@ -48,7 +48,7 @@ public class ListarVendedoresDialog extends JDialog {
 				return false;
 			}
 		};
-		
+
 		comboOrden = new JComboBox<>();
 		comboOrden.addItem(new SortIdStrategy<Vendedor>(true));
 		comboOrden.addItem(new SortIdStrategy<Vendedor>(false));
@@ -56,12 +56,12 @@ public class ListarVendedoresDialog extends JDialog {
 		JPanel panelControl = new JPanel();
 		panelControl.add(new JLabel("Ordenar por:"));
 		panelControl.add(comboOrden);
-		
+
 		add(panelControl, BorderLayout.NORTH);
-		
+
 		tabla = new JTable(modeloTabla);
 		JScrollPane scrollPane = new JScrollPane(tabla);
-		
+
 		add(scrollPane, BorderLayout.CENTER);
 
 		JPanel panelBotones = new JPanel();
@@ -74,10 +74,10 @@ public class ListarVendedoresDialog extends JDialog {
 
 	private void cargarVendedores() {
 		modeloTabla.setRowCount(0);
-		
+
 		@SuppressWarnings("unchecked")
 		SortStrategy<Vendedor> strategy = (SortStrategy<Vendedor>) comboOrden.getSelectedItem();
-		
+
 		List<Vendedor> vendedores = SistemaBDL.getInstance().getControlVendedor().listarVendedores(strategy);
 
 		for (Vendedor v : vendedores) {

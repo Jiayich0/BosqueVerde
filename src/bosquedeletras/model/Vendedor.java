@@ -46,7 +46,7 @@ public class Vendedor implements Sortable {
 	public boolean isActivo() {
 		return activo;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}

@@ -81,8 +81,7 @@ public class Factura implements Sortable {
 	// toString útil para debug
 	@Override
 	public String toString() {
-		return "Factura #" + id + " | Fecha: " + fecha + " | Cliente: " + idCliente
-				+ " | Vendedor: " + idVendedor + " | Total: " + total
-				+ " | Cerrada: " + cerrada;
+		return "Factura #" + id + " | Fecha: " + fecha + " | Cliente: " + idCliente + " | Vendedor: " + idVendedor
+				+ " | Total: " + total + " | Cerrada: " + cerrada;
 	}
 }

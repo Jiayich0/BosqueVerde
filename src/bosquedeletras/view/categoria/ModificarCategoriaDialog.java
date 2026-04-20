@@ -60,12 +60,13 @@ public class ModificarCategoriaDialog extends JDialog {
 		String descripcion = formulario.getDescripcion();
 
 		if (nombre.isEmpty() || descripcion.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Nombre y descripción son obligatorios.",
-					"DATOS INCOMPLETOS", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Nombre y descripción son obligatorios.", "DATOS INCOMPLETOS",
+					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
-		boolean modificacionCorrecta = SistemaBDL.getInstance().getControlCategoria().modificarCategoria(nombre, descripcion);
+		boolean modificacionCorrecta = SistemaBDL.getInstance().getControlCategoria().modificarCategoria(nombre,
+				descripcion);
 
 		if (modificacionCorrecta) {
 			JOptionPane.showMessageDialog(this, "Categoría modificada correctamente.", "MODIFICACIÓN CORRECTA",
