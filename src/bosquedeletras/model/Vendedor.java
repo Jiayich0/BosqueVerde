@@ -1,6 +1,8 @@
 package bosquedeletras.model;
 
-public class Vendedor {
+import bosquedeletras.strategy.Sortable;
+
+public class Vendedor implements Sortable {
 
 	private int id;
 	private boolean activo;
@@ -36,6 +38,7 @@ public class Vendedor {
 	}
 
 	// Getters
+	@Override
 	public int getId() {
 		return id;
 	}
@@ -43,7 +46,7 @@ public class Vendedor {
 	public boolean isActivo() {
 		return activo;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}

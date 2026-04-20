@@ -4,6 +4,7 @@ import java.util.List;
 
 import bosquedeletras.dao.DAOLibro;
 import bosquedeletras.model.Libro;
+import bosquedeletras.strategy.SortStrategy;
 
 public class ControlLibro {
 
@@ -60,8 +61,18 @@ public class ControlLibro {
     public Libro leerLibro(String isbn) {
         return daoLibro.buscarPorIsbn(isbn);
     }
-
+    
+	//TODO quitar
     public List<Libro> listarLibros() {
         return daoLibro.listar();
     }
+	public List<Libro> listarLibros(SortStrategy<Libro> strategy) {
+		List<Libro> lista = daoLibro.listar();
+		
+		if (strategy != null) {
+			strategy.sort(lista);
+		}
+		
+		return lista;
+	}
 }

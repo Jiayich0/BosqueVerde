@@ -76,6 +76,7 @@ Crear tu tabla (si es que ningún compañero más que comparta subsistema lo ha 
 
 # 2 Modelo: crear el modelo
 Vuestro modelo, la clase con sus atributos y sus getter/setter
+Añadir que implemente Sortable
 
 # 3 Crear el DAO, el "objeto dato"
 Todas las consultas sql de vuestro modelo
@@ -88,6 +89,7 @@ Crear el Control de vuestro modelo, básicamente implementar los casos de uso
 
 # 6 Implementar la vista (Swing)
 Crear el pequete de veustro susbsistema y creáis dentro las clase snecesarias para la vista
+En listar añadir para que se pueda usar estretgias y sort
 
 -------------------------------------------------------------------------------------------------------------
 |                                                   Pruebas                                                 |

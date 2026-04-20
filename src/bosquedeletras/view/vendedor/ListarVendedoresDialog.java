@@ -5,7 +5,9 @@ import java.awt.Frame;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 
 import bosquedeletras.facade.SistemaBDL;
 import bosquedeletras.model.Vendedor;
+import bosquedeletras.strategy.SortIdStrategy;
+import bosquedeletras.strategy.SortStrategy;
 
 public class ListarVendedoresDialog extends JDialog {
 
@@ -20,6 +24,7 @@ public class ListarVendedoresDialog extends JDialog {
 
 	private JTable tabla;
 	private DefaultTableModel modeloTabla;
+	private JComboBox<SortStrategy<Vendedor>> comboOrden;
 
 	public ListarVendedoresDialog(Frame parent) {
 		super(parent, "LISTAR VENDEDORES", true);
@@ -43,10 +48,20 @@ public class ListarVendedoresDialog extends JDialog {
 				return false;
 			}
 		};
-
+		
+		comboOrden = new JComboBox<>();
+		comboOrden.addItem(new SortIdStrategy<Vendedor>(true));
+		comboOrden.addItem(new SortIdStrategy<Vendedor>(false));
+		comboOrden.addActionListener(e -> cargarVendedores());
+		JPanel panelControl = new JPanel();
+		panelControl.add(new JLabel("Ordenar por:"));
+		panelControl.add(comboOrden);
+		
+		add(panelControl, BorderLayout.NORTH);
+		
 		tabla = new JTable(modeloTabla);
 		JScrollPane scrollPane = new JScrollPane(tabla);
-
+		
 		add(scrollPane, BorderLayout.CENTER);
 
 		JPanel panelBotones = new JPanel();
@@ -59,8 +74,11 @@ public class ListarVendedoresDialog extends JDialog {
 
 	private void cargarVendedores() {
 		modeloTabla.setRowCount(0);
-
-		List<Vendedor> vendedores = SistemaBDL.getInstance().getControlVendedor().listarVendedores();
+		
+		@SuppressWarnings("unchecked")
+		SortStrategy<Vendedor> strategy = (SortStrategy<Vendedor>) comboOrden.getSelectedItem();
+		
+		List<Vendedor> vendedores = SistemaBDL.getInstance().getControlVendedor().listarVendedores(strategy);
 
 		for (Vendedor v : vendedores) {
 			Object[] fila = { v.getId(), v.getNombre(), v.getPrimerApellido(),

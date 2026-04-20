@@ -1,6 +1,8 @@
 package bosquedeletras.model;
 
-public class Factura {
+import bosquedeletras.strategy.Sortable;
+
+public class Factura implements Sortable {
 
 	private int id;
 
@@ -30,6 +32,7 @@ public class Factura {
 	}
 
 	// Getters
+	@Override
 	public int getId() {
 		return id;
 	}

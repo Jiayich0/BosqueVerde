@@ -23,7 +23,6 @@ Patrones usados:
     El patrón DAO (Data Access Object) se encarga de separar completamente el acceso a la base de datos del resto de la aplicación. Toda la lógica SQL queda centralizada en una única clase. 
     Cada entidad del sistema tiene su propio DAO que contiene todas las operaciones necesarias para interactuar con la base de datos.
 
-- Strategy (patrón comportamental) (pendiente de implementación)
-  Se plantea utilizar este patrón para desacoplar distintos criterios de filtrado o búsqueda en operaciones de listado
-  de subsistemas, por ejemplo filtrar por nombre, DNI, categoría u otros atributos sin modificar la lógica principal.
+- Strategy (patrón comportamental)
+  Se utiliza este patrón para desacoplar distintos criterios de filtrado o búsqueda en operaciones de listado de subsistemas sin modificar la lógica principal. Actualmente se puede ordenar solo por ID. Ampliar ordenación por nombre, DNI, categoría u otros atributos.
 

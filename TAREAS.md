@@ -23,8 +23,8 @@
 - [x] Implementar interfaz base
 - [x] Probar flujo completo
 ### 6. Strategy
-- [ ] Crear las strategy
-- [ ] Implementar
+- [x] Crear las strategy
+- [x] Implementar
 ### 7. Reparto trabajo
 - [x] Crear README general
 - [x] Crear GUIA interna
@@ -33,7 +33,7 @@
 # Completar proyecto
 ### 1. Realización de cada miembro
 - [x] Carlos L.
-- [ ] Carlos T.
+- [x] Carlos T.
 - [ ] Nuria.
 - [ ] Pablo
 - [ ] Jiale

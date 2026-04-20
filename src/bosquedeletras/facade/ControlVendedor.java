@@ -4,6 +4,7 @@ import java.util.List;
 
 import bosquedeletras.dao.DAOVendedor;
 import bosquedeletras.model.Vendedor;
+import bosquedeletras.strategy.SortStrategy;
 
 public class ControlVendedor {
 
@@ -63,7 +64,13 @@ public class ControlVendedor {
 		return daoVendedor.buscarPorDni(dni);
 	}
 
-	public List<Vendedor> listarVendedores() {
-		return daoVendedor.listar();
+	public List<Vendedor> listarVendedores(SortStrategy<Vendedor> strategy) {
+		List<Vendedor> lista = daoVendedor.listar();
+		
+		if (strategy != null) {
+			strategy.sort(lista);
+		}
+		
+		return lista;
 	}
 }

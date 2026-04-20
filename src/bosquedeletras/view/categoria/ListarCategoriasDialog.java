@@ -5,7 +5,9 @@ import java.awt.Frame;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 
 import bosquedeletras.facade.SistemaBDL;
 import bosquedeletras.model.Categoria;
+import bosquedeletras.strategy.SortIdStrategy;
+import bosquedeletras.strategy.SortStrategy;
 
 public class ListarCategoriasDialog extends JDialog {
 
@@ -20,6 +24,7 @@ public class ListarCategoriasDialog extends JDialog {
 
 	private JTable tabla;
 	private DefaultTableModel modeloTabla;
+	private JComboBox<SortStrategy<Categoria>> comboOrden;
 
 	public ListarCategoriasDialog(Frame parent) {
 		super(parent, "LISTAR CATEGORIAS", true);
@@ -43,6 +48,16 @@ public class ListarCategoriasDialog extends JDialog {
 				return false;
 			}
 		};
+		
+		comboOrden = new JComboBox<>();
+		comboOrden.addItem(new SortIdStrategy<Categoria>(true));
+		comboOrden.addItem(new SortIdStrategy<Categoria>(false));
+		comboOrden.addActionListener(e -> cargarCategorias());
+		JPanel panelControl = new JPanel();
+		panelControl.add(new JLabel("Ordenar por:"));
+		panelControl.add(comboOrden);
+		
+		add(panelControl, BorderLayout.NORTH);
 
 		tabla = new JTable(modeloTabla);
 		JScrollPane scrollPane = new JScrollPane(tabla);
@@ -59,8 +74,11 @@ public class ListarCategoriasDialog extends JDialog {
 
 	private void cargarCategorias() {
 		modeloTabla.setRowCount(0);
-
-		List<Categoria> categorias = SistemaBDL.getInstance().getControlCategoria().listarCategorias();
+		
+		@SuppressWarnings("unchecked")
+		SortStrategy<Categoria> strategy = (SortStrategy<Categoria>) comboOrden.getSelectedItem();
+		
+		List<Categoria> categorias = SistemaBDL.getInstance().getControlCategoria().listarCategorias(strategy);
 
 		for (Categoria c : categorias) {
 			Object[] fila = {

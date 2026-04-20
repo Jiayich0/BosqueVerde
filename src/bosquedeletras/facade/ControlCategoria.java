@@ -4,6 +4,7 @@ import java.util.List;
 
 import bosquedeletras.dao.DAOCategoria;
 import bosquedeletras.model.Categoria;
+import bosquedeletras.strategy.SortStrategy;
 
 public class ControlCategoria {
 
@@ -55,7 +56,13 @@ public class ControlCategoria {
         return daoCategoria.buscarPorNombre(nombre);
     }
 
-    public List<Categoria> listarCategorias() {
-        return daoCategoria.listar();
+    public List<Categoria> listarCategorias(SortStrategy<Categoria> strategy) {
+        List<Categoria> lista = daoCategoria.listar();
+        
+        if (strategy != null) {
+			strategy.sort(lista);
+		}
+		
+		return lista;
     }
 }

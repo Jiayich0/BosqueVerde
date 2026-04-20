@@ -1,6 +1,8 @@
 package bosquedeletras.model;
 
-public class Libro {
+import bosquedeletras.strategy.Sortable;
+
+public class Libro implements Sortable {
 
     private int id;
     private boolean activo;
@@ -30,7 +32,8 @@ public class Libro {
         this.ano = ano;
     }
 
-    // Getters 
+    // Getters
+    @Override
     public int getId() {
         return id;
     }

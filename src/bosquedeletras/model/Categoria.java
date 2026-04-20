@@ -1,6 +1,8 @@
 package bosquedeletras.model;
 
-public class Categoria {
+import bosquedeletras.strategy.Sortable;
+
+public class Categoria implements Sortable {
 
     private int id;
     private String nombre;
@@ -19,7 +21,8 @@ public class Categoria {
         this.descripcion = descripcion;
         this.activo = activo;
     }
-
+    
+    @Override
     public int getId() {
         return id;
     }

@@ -6,6 +6,7 @@ import bosquedeletras.dao.DAOFactura;
 import bosquedeletras.dao.DAOLineaFactura;
 import bosquedeletras.model.Factura;
 import bosquedeletras.model.LineaFactura;
+import bosquedeletras.strategy.SortStrategy;
 
 public class ControlFactura {
 
@@ -79,9 +80,20 @@ public class ControlFactura {
 	public List<LineaFactura> leerLineasFactura(int idFactura) {
 		return daoLineaFactura.listarPorFactura(idFactura);
 	}
-
+	
+	//TODO quitar
 	public List<Factura> listarFacturas() {
 		return daoFactura.listar();
+	}
+	
+	public List<Factura> listarLibros(SortStrategy<Factura> strategy) {
+		List<Factura> lista = daoFactura.listar();
+		
+		if (strategy != null) {
+			strategy.sort(lista);
+		}
+		
+		return lista;
 	}
 
 	public List<Factura> listarFacturasPorCliente(int idCliente) {
