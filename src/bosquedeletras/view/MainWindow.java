@@ -1,11 +1,15 @@
 package bosquedeletras.view;
 
+import bosquedeletras.utils.Utils;
+import bosquedeletras.view.categoria.CategoriaWindow;
+import bosquedeletras.view.editorial.EditorialWindow;
+import bosquedeletras.view.libro.LibroWindow;
+import bosquedeletras.view.vendedor.VendedorWindow;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,11 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import bosquedeletras.utils.Utils;
-import bosquedeletras.view.vendedor.VendedorWindow;
-import bosquedeletras.view.libro.LibroWindow;
-import bosquedeletras.view.categoria.CategoriaWindow;
 
 public class MainWindow extends JFrame {
 
@@ -71,6 +70,7 @@ public class MainWindow extends JFrame {
 		btnVendedor.addActionListener(e -> abrirVendedor());
 		btnLibro.addActionListener(e -> abrirLibro());
 		btnCategoria.addActionListener(e -> abrirCategoria());
+		btnEditorial.addActionListener(e -> abrirEditorial());
 
 		panel.add(btnCliente);
 		panel.add(btnVendedor);
@@ -104,6 +104,13 @@ public class MainWindow extends JFrame {
 	private void abrirCategoria() {
 		CategoriaWindow ventanaCategoria = new CategoriaWindow();
 		ventanaCategoria.setVisible(true);
+		dispose();
+	}
+
+	private void abrirEditorial() {
+		System.out.println("Abriendo EditorialWindow...");
+		EditorialWindow ventanaEditorial = new EditorialWindow();
+		ventanaEditorial.setVisible(true);
 		dispose();
 	}
 }

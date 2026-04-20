@@ -8,6 +8,11 @@ import java.sql.Statement;
 public class ConexionBD {
 
 	public static Connection getConnection() throws SQLException {
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e) {
+			throw new SQLException("SQLite JDBC driver not found", e);
+		}
 		return DriverManager.getConnection(Utils.DB_PATH);
 	}
 
@@ -66,6 +71,14 @@ public class ConexionBD {
 						activo INTEGER NOT NULL
 					);
 				""";
+		
+		String sqlTablaEditorial = """
+        			CREATE TABLE IF NOT EXISTS editorial (
+            			id TEXT PRIMARY KEY,
+            			nombre TEXT NOT NULL,
+            			activo INTEGER NOT NULL
+        			);
+            	""";
 
 		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
 
@@ -74,6 +87,7 @@ public class ConexionBD {
 			stmt.execute(sqlTablaFactura);
 			stmt.execute(sqlTablaLineaFactura);
 			stmt.execute(sqlTablaCategoria);
+			stmt.execute(sqlTablaEditorial);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
