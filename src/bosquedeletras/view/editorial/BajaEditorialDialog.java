@@ -1,17 +1,15 @@
 package bosquedeletras.view.editorial;
 
+import bosquedeletras.facade.SistemaBDL;
+import bosquedeletras.model.Editorial;
 import java.awt.BorderLayout;
 import java.awt.Frame;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import bosquedeletras.facade.SistemaBDL;
-import bosquedeletras.model.Editorial;
 
 public class BajaEditorialDialog extends JDialog {
 
@@ -86,7 +84,7 @@ public class BajaEditorialDialog extends JDialog {
             return;
         }
 
-        // [Activo] - Confirmar que no tiene libro asociado
+        //  Confirmar que no tiene libro asociado
         boolean tieneLibros = SistemaBDL.getInstance().getControlEditorial().tieneLibrosAsociados(id);
         
         if (tieneLibros) {
@@ -97,19 +95,19 @@ public class BajaEditorialDialog extends JDialog {
             return;
         }
 
-        // [Libro no asociado] - Confirmar baja
+        // Confirmar baja
         int confirmacion = JOptionPane.showConfirmDialog(this,
                 "¿Seguro que quieres dar de baja la editorial con ID " + id + "?",
                 "CONFIRMAR BAJA",
                 JOptionPane.YES_NO_OPTION, 
                 JOptionPane.WARNING_MESSAGE);
 
-        // [Usuario cancelado]
+        // Usuario cancelado
         if (confirmacion != JOptionPane.YES_OPTION) {
             return;
         }
 
-        // [Usuario confirmado] - Realizar borrado (activo = false)
+        // Realizar borrado (activo = false)
         boolean bajaCorrecta = SistemaBDL.getInstance().getControlEditorial().bajaEditorial(id);
 
         // Confirmar baja

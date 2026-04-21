@@ -108,7 +108,6 @@ public class MainWindow extends JFrame {
 	}
 
 	private void abrirEditorial() {
-		System.out.println("Abriendo EditorialWindow...");
 		EditorialWindow ventanaEditorial = new EditorialWindow();
 		ventanaEditorial.setVisible(true);
 		dispose();

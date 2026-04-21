@@ -77,6 +77,7 @@ public class ConexionBD {
             			id TEXT PRIMARY KEY,
             			nombre TEXT NOT NULL,
             			activo INTEGER NOT NULL
+						
         			);
             	""";
 
