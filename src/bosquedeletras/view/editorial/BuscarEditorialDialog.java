@@ -15,75 +15,71 @@ import bosquedeletras.model.Editorial;
 
 public class BuscarEditorialDialog extends JDialog {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JTextField txtId;
-    private String accion;
+	private JTextField txtId;
+	private String accion;
 
-    public BuscarEditorialDialog(Frame parent, String accion) {
-        super(parent, "BUSCAR EDITORIAL", true);
-        this.accion = accion;
+	public BuscarEditorialDialog(Frame parent, String accion) {
+		super(parent, "BUSCAR EDITORIAL", true);
+		this.accion = accion;
 
-        setSize(350, 150);
-        setLocationRelativeTo(parent);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setSize(350, 150);
+		setLocationRelativeTo(parent);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        initComponents();
-    }
+		initComponents();
+	}
 
-    private void initComponents() {
-        setLayout(new BorderLayout());
+	private void initComponents() {
+		setLayout(new BorderLayout());
 
-        JPanel panelCentro = new JPanel();
-        panelCentro.add(new JLabel("ID Editorial:"));
-        txtId = new JTextField(15);
-        panelCentro.add(txtId);
+		JPanel panelCentro = new JPanel();
+		panelCentro.add(new JLabel("ID Editorial:"));
+		txtId = new JTextField(15);
+		panelCentro.add(txtId);
 
-        add(panelCentro, BorderLayout.CENTER);
+		add(panelCentro, BorderLayout.CENTER);
 
-        JPanel panelBotones = new JPanel();
+		JPanel panelBotones = new JPanel();
 
-        JButton btnBuscar = new JButton("Buscar");
-        JButton btnCancelar = new JButton("Cancelar");
+		JButton btnBuscar = new JButton("Buscar");
+		JButton btnCancelar = new JButton("Cancelar");
 
-        btnBuscar.addActionListener(e -> buscar());
-        btnCancelar.addActionListener(e -> dispose());
+		btnBuscar.addActionListener(e -> buscar());
+		btnCancelar.addActionListener(e -> dispose());
 
-        panelBotones.add(btnBuscar);
-        panelBotones.add(btnCancelar);
+		panelBotones.add(btnBuscar);
+		panelBotones.add(btnCancelar);
 
-        add(panelBotones, BorderLayout.SOUTH);
-    }
+		add(panelBotones, BorderLayout.SOUTH);
+	}
 
-    private void buscar() {
-        String id = txtId.getText().trim().toUpperCase();
+	private void buscar() {
+		String id = txtId.getText().trim().toUpperCase();
 
-        if (id.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                "El ID es obligatorio.", 
-                "DATOS INCOMPLETOS",
-                JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+		if (id.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "El ID es obligatorio.", "DATOS INCOMPLETOS",
+					JOptionPane.WARNING_MESSAGE);
+			return;
+		}
 
-        Editorial editorial = SistemaBDL.getInstance().getControlEditorial().buscarEditorial(id);
+		Editorial editorial = SistemaBDL.getInstance().getControlEditorial().buscarEditorial(id);
 
-        if (editorial == null) {
-            JOptionPane.showMessageDialog(this, 
-                "La editorial indicada no existe.", 
-                "NO EXISTE", 
-                JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+		if (editorial == null) {
+			JOptionPane.showMessageDialog(this, "La editorial indicada no existe.", "NO EXISTE",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
-        if ("leer".equals(accion)) {
-            LeerEditorialDialog dialog = new LeerEditorialDialog(this, editorial);
-            dialog.setVisible(true);
-        } else if ("modificar".equals(accion)) {
-            ModificarEditorialDialog dialog = new ModificarEditorialDialog(this, editorial);
-            dialog.setVisible(true);
-        }
+		if ("leer".equals(accion)) {
+			LeerEditorialDialog dialog = new LeerEditorialDialog(this, editorial);
+			dialog.setVisible(true);
+		} else if ("modificar".equals(accion)) {
+			ModificarEditorialDialog dialog = new ModificarEditorialDialog(this, editorial);
+			dialog.setVisible(true);
+		}
 
-        dispose();
-    }
+		dispose();
+	}
 }

@@ -76,8 +76,8 @@ public class ModificarClienteDialog extends JDialog {
 		}
 
 		if (nombre.isEmpty() || primerApellido.isEmpty() || dni.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Nombre, primer apellido y DNI son obligatorios.",
-					"DATOS INCOMPLETOS", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Nombre, primer apellido y DNI son obligatorios.", "DATOS INCOMPLETOS",
+					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
@@ -87,8 +87,8 @@ public class ModificarClienteDialog extends JDialog {
 			return;
 		}
 
-		boolean modificacionCorrecta = SistemaBDL.getInstance().getControlCliente().modificarCliente(nombre, primerApellido,
-				segundoApellido, dni, email);
+		boolean modificacionCorrecta = SistemaBDL.getInstance().getControlCliente().modificarCliente(nombre,
+				primerApellido, segundoApellido, dni, email);
 
 		if (modificacionCorrecta) {
 			JOptionPane.showMessageDialog(this, "Cliente modificado correctamente.", "MODIFICACIÓN CORRECTA",

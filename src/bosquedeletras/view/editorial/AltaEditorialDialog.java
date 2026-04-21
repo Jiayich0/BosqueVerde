@@ -10,71 +10,64 @@ import javax.swing.JPanel;
 
 public class AltaEditorialDialog extends JDialog {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private FormularioEditorialPanel formulario;
+	private FormularioEditorialPanel formulario;
 
-    public AltaEditorialDialog(Frame parent) {
-        super(parent, "ALTA EDITORIAL", true);
-        setSize(500, 300);
+	public AltaEditorialDialog(Frame parent) {
+		super(parent, "ALTA EDITORIAL", true);
+		setSize(500, 300);
 		setLocationRelativeTo(parent);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        initComponents();
-    }
+		initComponents();
+	}
 
-    private void initComponents() {
-        setLayout(new BorderLayout());
+	private void initComponents() {
+		setLayout(new BorderLayout());
 
-        formulario = new FormularioEditorialPanel();
-        add(formulario, BorderLayout.CENTER);
+		formulario = new FormularioEditorialPanel();
+		add(formulario, BorderLayout.CENTER);
 
-        JPanel panelBotones = new JPanel();
+		JPanel panelBotones = new JPanel();
 
-        JButton btnOk = new JButton("OK");
-        JButton btnCancelar = new JButton("Cancelar");
+		JButton btnOk = new JButton("OK");
+		JButton btnCancelar = new JButton("Cancelar");
 
-        btnOk.addActionListener(e -> aceptar());
-        btnCancelar.addActionListener(e -> dispose());
+		btnOk.addActionListener(e -> aceptar());
+		btnCancelar.addActionListener(e -> dispose());
 
-        panelBotones.add(btnOk);
-        panelBotones.add(btnCancelar);
+		panelBotones.add(btnOk);
+		panelBotones.add(btnCancelar);
 
-        add(panelBotones, BorderLayout.SOUTH);
-    }
+		add(panelBotones, BorderLayout.SOUTH);
+	}
 
-    private void aceptar() {
-        String id = formulario.getId();
-        String nombre = formulario.getNombre();
+	private void aceptar() {
+		String id = formulario.getId();
+		String nombre = formulario.getNombre();
 
-        // Validación de datos obligatorios
-        if (id.isEmpty() || nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                "ID Editorial y Nombre son obligatorios.",
-                "DATOS INCOMPLETOS",
-                JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+		// Validación de datos obligatorios
+		if (id.isEmpty() || nombre.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "ID Editorial y Nombre son obligatorios.", "DATOS INCOMPLETOS",
+					JOptionPane.WARNING_MESSAGE);
+			return;
+		}
 
-        int resultado = SistemaBDL.getInstance().getControlEditorial().altaEditorial(id, nombre);
+		int resultado = SistemaBDL.getInstance().getControlEditorial().altaEditorial(id, nombre);
 
-        if (resultado == 1) {
-            JOptionPane.showMessageDialog(this,
-                "Editorial dada de alta correctamente.",
-                "ALTA CORRECTA",
-                JOptionPane.INFORMATION_MESSAGE);
-            dispose();
-        } else if (resultado == 2) {
-            JOptionPane.showMessageDialog(this,
-                "Editorial reactivada correctamente.",
-                "REACTIVACIÓN CORRECTA",
-                JOptionPane.INFORMATION_MESSAGE);
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(this,
-                "No se ha podido dar de alta. Ya existe una editorial activa con ese ID.",
-                "ERROR - EDITORIAL EXISTENTE",
-                JOptionPane.ERROR_MESSAGE);
-        }
-    }
+		if (resultado == 1) {
+			JOptionPane.showMessageDialog(this, "Editorial dada de alta correctamente.", "ALTA CORRECTA",
+					JOptionPane.INFORMATION_MESSAGE);
+			dispose();
+		} else if (resultado == 2) {
+			JOptionPane.showMessageDialog(this, "Editorial reactivada correctamente.", "REACTIVACIÓN CORRECTA",
+					JOptionPane.INFORMATION_MESSAGE);
+			dispose();
+		} else {
+			JOptionPane.showMessageDialog(this,
+					"No se ha podido dar de alta. Ya existe una editorial activa con ese ID.",
+					"ERROR - EDITORIAL EXISTENTE", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 }

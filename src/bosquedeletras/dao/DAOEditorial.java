@@ -11,158 +11,139 @@ import java.util.List;
 
 public class DAOEditorial {
 
-    public boolean insertar(Editorial e) {
-        String sql = "INSERT INTO editorial (id, nombre, activo) VALUES (?, ?, ?)";
+	public boolean insertar(Editorial e) {
+		String sql = "INSERT INTO editorial (id, nombre, activo) VALUES (?, ?, ?)";
 
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, e.getId());
-            ps.setString(2, e.getNombre());
-            ps.setInt(3, e.isActivo() ? 1 : 0);
+			ps.setString(1, e.getId());
+			ps.setString(2, e.getNombre());
+			ps.setInt(3, e.isActivo() ? 1 : 0);
 
-            return ps.executeUpdate() > 0;
+			return ps.executeUpdate() > 0;
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return false;
+		}
+	}
 
-    public Editorial buscarPorId(String id) {
-        String sql = "SELECT * FROM editorial WHERE id = ?";
+	public Editorial buscarPorId(String id) {
+		String sql = "SELECT * FROM editorial WHERE id = ?";
 
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, id);
+			ps.setString(1, id);
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return new Editorial(
-                        rs.getString("id"),
-                        rs.getString("nombre"),
-                        rs.getInt("activo") == 1
-                    );
-                }
-            }
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return new Editorial(rs.getString("id"), rs.getString("nombre"), rs.getInt("activo") == 1);
+				}
+			}
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
 
-    public Editorial buscarPorIdActivo(String id) {
-        String sql = "SELECT * FROM editorial WHERE id = ? AND activo = 1";
+	public Editorial buscarPorIdActivo(String id) {
+		String sql = "SELECT * FROM editorial WHERE id = ? AND activo = 1";
 
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, id);
+			ps.setString(1, id);
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return new Editorial(
-                        rs.getString("id"),
-                        rs.getString("nombre"),
-                        rs.getInt("activo") == 1
-                    );
-                }
-            }
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return new Editorial(rs.getString("id"), rs.getString("nombre"), rs.getInt("activo") == 1);
+				}
+			}
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
 
-    public boolean tieneLibrosAsociados(String id) {
-        String sql = "SELECT COUNT(*) FROM libro WHERE editorial_id = ? AND activo = 1";
+	public boolean tieneLibrosAsociados(String id) {
+		String sql = "SELECT COUNT(*) FROM libro WHERE editorial_id = ? AND activo = 1";
 
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, id);
-            
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt(1) > 0;
-                }
-            }
+			ps.setString(1, id);
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return false;
-    }
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1) > 0;
+				}
+			}
 
-    public boolean bajaLogica(String id) {
-        String sql = "UPDATE editorial SET activo = 0 WHERE id = ? AND activo = 1";
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return false;
+	}
 
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+	public boolean bajaLogica(String id) {
+		String sql = "UPDATE editorial SET activo = 0 WHERE id = ? AND activo = 1";
 
-            ps.setString(1, id);
-            return ps.executeUpdate() > 0;
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
+			ps.setString(1, id);
+			return ps.executeUpdate() > 0;
 
-    public boolean reactivar(String id) {
-        String sql = "UPDATE editorial SET activo = 1 WHERE id = ? AND activo = 0";
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return false;
+		}
+	}
 
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+	public boolean reactivar(String id) {
+		String sql = "UPDATE editorial SET activo = 1 WHERE id = ? AND activo = 0";
 
-            ps.setString(1, id);
-            return ps.executeUpdate() > 0;
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
+			ps.setString(1, id);
+			return ps.executeUpdate() > 0;
 
-    // Actualizar editorial
-    public boolean actualizar(Editorial editorial) {
-        String sql = "UPDATE editorial SET nombre = ? WHERE id = ? AND activo = 1";
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return false;
+		}
+	}
 
-        try (Connection conn = ConexionBD.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
+	// Actualizar editorial
+	public boolean actualizar(Editorial editorial) {
+		String sql = "UPDATE editorial SET nombre = ? WHERE id = ? AND activo = 1";
 
-            ps.setString(1, editorial.getNombre());
-            ps.setString(2, editorial.getId());
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            return ps.executeUpdate() > 0;
+			ps.setString(1, editorial.getNombre());
+			ps.setString(2, editorial.getId());
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
+			return ps.executeUpdate() > 0;
 
-    public List<Editorial> listar() {
-        List<Editorial> editoriales = new ArrayList<>();
-        String sql = "SELECT * FROM editorial WHERE activo = 1";
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return false;
+		}
+	}
 
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                editoriales.add(new Editorial(
-                    rs.getString("id"),
-                    rs.getString("nombre"),
-                    rs.getInt("activo") == 1
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+	public List<Editorial> listar() {
+		List<Editorial> editoriales = new ArrayList<>();
+		String sql = "SELECT * FROM editorial WHERE activo = 1";
 
-        return editoriales;
-    }
+		try (Connection conn = ConexionBD.getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery()) {
+			while (rs.next()) {
+				editoriales.add(new Editorial(rs.getString("id"), rs.getString("nombre"), rs.getInt("activo") == 1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return editoriales;
+	}
 }

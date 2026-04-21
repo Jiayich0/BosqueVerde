@@ -62,8 +62,8 @@ public class AltaClienteDialog extends JDialog {
 		}
 
 		if (nombre.isEmpty() || primerApellido.isEmpty() || dni.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Nombre, primer apellido y DNI son obligatorios.",
-					"DATOS INCOMPLETOS", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Nombre, primer apellido y DNI son obligatorios.", "DATOS INCOMPLETOS",
+					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
@@ -73,8 +73,8 @@ public class AltaClienteDialog extends JDialog {
 			return;
 		}
 
-		boolean altaCorrecta = SistemaBDL.getInstance().getControlCliente().altaCliente(nombre, primerApellido, segundoApellido, dni,
-				email);
+		boolean altaCorrecta = SistemaBDL.getInstance().getControlCliente().altaCliente(nombre, primerApellido,
+				segundoApellido, dni, email);
 
 		if (altaCorrecta) {
 			JOptionPane.showMessageDialog(this, "Cliente dado de alta correctamente.", "ALTA CORRECTA",

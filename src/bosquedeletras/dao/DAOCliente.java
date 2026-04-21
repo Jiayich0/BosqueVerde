@@ -140,7 +140,6 @@ public class DAOCliente {
 
 	private Cliente mapearCliente(ResultSet rs) throws SQLException {
 		return new Cliente(rs.getInt("id"), rs.getString("nombre"), rs.getString("primer_apellido"),
-				rs.getString("segundo_apellido"), rs.getString("dni"), rs.getString("email"),
-				rs.getInt("activo") == 1);
+				rs.getString("segundo_apellido"), rs.getString("dni"), rs.getString("email"), rs.getInt("activo") == 1);
 	}
 }

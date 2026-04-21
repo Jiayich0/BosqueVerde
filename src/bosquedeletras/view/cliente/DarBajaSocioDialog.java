@@ -54,8 +54,8 @@ public class DarBajaSocioDialog extends JDialog {
 		String dniCliente = txtDniCliente.getText().trim().toUpperCase();
 
 		if (!Utils.isValidDni(dniCliente)) {
-			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.",
-					"INCORRECTO - BAJA SOCIO", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Los datos introducidos son incorrectos.", "INCORRECTO - BAJA SOCIO",
+					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 

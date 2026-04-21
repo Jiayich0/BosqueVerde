@@ -49,7 +49,7 @@ public class ListarClientesDialog extends JDialog {
 				return false;
 			}
 		};
-		
+
 		comboOrden = new JComboBox<>();
 		comboOrden.addItem(new SortIdStrategy<Cliente>(true));
 		comboOrden.addItem(new SortIdStrategy<Cliente>(false));
@@ -59,37 +59,32 @@ public class ListarClientesDialog extends JDialog {
 		panelControl.add(comboOrden);
 
 		add(panelControl, BorderLayout.NORTH);
-		
+
 		tabla = new JTable(modeloTabla);
 		JScrollPane scrollPane = new JScrollPane(tabla);
-		
+
 		add(scrollPane, BorderLayout.CENTER);
 
 		JPanel panelBotones = new JPanel();
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(e -> dispose());
 		panelBotones.add(btnCerrar);
-		
+
 		add(panelBotones, BorderLayout.SOUTH);
 	}
 
 	private void cargarClientes() {
 		modeloTabla.setRowCount(0);
-		
+
 		@SuppressWarnings("unchecked")
 		SortStrategy<Cliente> strategy = (SortStrategy<Cliente>) comboOrden.getSelectedItem();
-		
+
 		List<Cliente> clientes = SistemaBDL.getInstance().getControlCliente().listarClientes(strategy);
 
 		for (Cliente c : clientes) {
-			Object[] fila = {
-				c.getId(),
-				c.getNombre(),
-				c.getPrimerApellido(),
-				c.getSegundoApellido() != null ? c.getSegundoApellido() : "-",
-				c.getDni(),
-				c.getEmail() != null ? c.getEmail() : "-"
-			};
+			Object[] fila = { c.getId(), c.getNombre(), c.getPrimerApellido(),
+					c.getSegundoApellido() != null ? c.getSegundoApellido() : "-", c.getDni(),
+					c.getEmail() != null ? c.getEmail() : "-" };
 			modeloTabla.addRow(fila);
 		}
 	}

@@ -82,7 +82,8 @@ public class RegistrarSocioDialog extends JDialog {
 			return;
 		}
 
-		boolean registroOk = SistemaBDL.getInstance().getControlCliente().registrarSocio(numeroSocio, fechaInscripcion, dniCliente);
+		boolean registroOk = SistemaBDL.getInstance().getControlCliente().registrarSocio(numeroSocio, fechaInscripcion,
+				dniCliente);
 
 		if (registroOk) {
 			JOptionPane.showMessageDialog(this, "Socio registrado correctamente.", "REGISTRO CORRECTO",

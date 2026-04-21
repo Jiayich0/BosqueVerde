@@ -12,7 +12,6 @@ public class FormularioEditorialPanel extends JPanel {
 
 	private JTextField txtNombre;
 	private JTextField txtId;
-	
 
 	public FormularioEditorialPanel() {
 		setLayout(new GridLayout(5, 2, 10, 10));
@@ -22,28 +21,23 @@ public class FormularioEditorialPanel extends JPanel {
 		txtNombre = new JTextField();
 		add(txtNombre);
 
-
 		add(new JLabel("Id:"));
 		txtId = new JTextField();
 		add(txtId);
 
-	
 	}
 
 	public String getNombre() {
 		return txtNombre.getText().trim();
 	}
 
-
 	public String getId() {
 		return txtId.getText().trim().toUpperCase();
 	}
 
-
 	public void setNombre(String nombre) {
 		txtNombre.setText(nombre);
 	}
-
 
 	public void setId(String dni) {
 		txtId.setText(dni);

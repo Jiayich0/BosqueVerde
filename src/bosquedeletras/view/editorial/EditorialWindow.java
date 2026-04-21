@@ -12,101 +12,100 @@ import javax.swing.JPanel;
 
 public class EditorialWindow extends JFrame {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public EditorialWindow() {
-        setTitle("EDITORIAL");
-        setSize(360, 300);  // Un poco más pequeño que Vendedor (400 -> 300)
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	public EditorialWindow() {
+		setTitle("EDITORIAL");
+		setSize(360, 300); // Un poco más pequeño que Vendedor (400 -> 300)
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        initComponents();
-    }
+		initComponents();
+	}
 
-    private void initComponents() {
-        setLayout(new BorderLayout(15, 15));
+	private void initComponents() {
+		setLayout(new BorderLayout(15, 15));
 
-        JPanel panelBotones = crearPanelBotones();
-        JPanel panelInferior = crearPanelInferior();
+		JPanel panelBotones = crearPanelBotones();
+		JPanel panelInferior = crearPanelInferior();
 
-        add(panelBotones, BorderLayout.CENTER);
-        add(panelInferior, BorderLayout.SOUTH);
-    }
+		add(panelBotones, BorderLayout.CENTER);
+		add(panelInferior, BorderLayout.SOUTH);
+	}
 
-    private JPanel crearPanelBotones() {
-    JPanel contenedor = new JPanel(new BorderLayout());
-    contenedor.setBorder(BorderFactory.createEmptyBorder(45, 72, 0, 72));
+	private JPanel crearPanelBotones() {
+		JPanel contenedor = new JPanel(new BorderLayout());
+		contenedor.setBorder(BorderFactory.createEmptyBorder(45, 72, 0, 72));
 
-    JPanel panel = new JPanel(new GridLayout(5, 1, 0, 15));  // 5 botones
+		JPanel panel = new JPanel(new GridLayout(5, 1, 0, 15)); // 5 botones
 
-    JButton btnAlta = crearBotonSubsistema("ALTA EDITORIAL");
-    JButton btnBaja = crearBotonSubsistema("BAJA EDITORIAL");
-    JButton btnModificar = crearBotonSubsistema("MODIFICAR EDITORIAL");
-    JButton btnLeer = crearBotonSubsistema("LEER EDITORIAL");
-    JButton btnListar = crearBotonSubsistema("LISTAR EDITORIALES");
+		JButton btnAlta = crearBotonSubsistema("ALTA EDITORIAL");
+		JButton btnBaja = crearBotonSubsistema("BAJA EDITORIAL");
+		JButton btnModificar = crearBotonSubsistema("MODIFICAR EDITORIAL");
+		JButton btnLeer = crearBotonSubsistema("LEER EDITORIAL");
+		JButton btnListar = crearBotonSubsistema("LISTAR EDITORIALES");
 
-    btnAlta.addActionListener(e -> abrirAlta());
-    btnBaja.addActionListener(e -> abrirBaja());
-    btnModificar.addActionListener(e -> abrirModificar());
-    btnLeer.addActionListener(e -> abrirLeer());
-    btnListar.addActionListener(e -> abrirListar());
+		btnAlta.addActionListener(e -> abrirAlta());
+		btnBaja.addActionListener(e -> abrirBaja());
+		btnModificar.addActionListener(e -> abrirModificar());
+		btnLeer.addActionListener(e -> abrirLeer());
+		btnListar.addActionListener(e -> abrirListar());
 
-    panel.add(btnAlta);
-    panel.add(btnBaja);
-    panel.add(btnModificar);
-    panel.add(btnLeer);
-    panel.add(btnListar);
+		panel.add(btnAlta);
+		panel.add(btnBaja);
+		panel.add(btnModificar);
+		panel.add(btnLeer);
+		panel.add(btnListar);
 
-    contenedor.add(panel, BorderLayout.CENTER);
-    return contenedor;
-}
+		contenedor.add(panel, BorderLayout.CENTER);
+		return contenedor;
+	}
 
-    private JPanel crearPanelInferior() {
-        JPanel panel = new JPanel();
+	private JPanel crearPanelInferior() {
+		JPanel panel = new JPanel();
 
-        JButton btnVolver = new JButton("Volver");
-        btnVolver.addActionListener(e -> volverMenuPrincipal());
-        panel.add(btnVolver);
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(e -> volverMenuPrincipal());
+		panel.add(btnVolver);
 
-        return panel;
-    }
+		return panel;
+	}
 
-    private JButton crearBotonSubsistema(String texto) {
-        JButton boton = new JButton(texto);
-        boton.setPreferredSize(new Dimension(60, 40));
-        boton.setFont(new Font("SansSerif", Font.BOLD, 14));
-        return boton;
-    }
+	private JButton crearBotonSubsistema(String texto) {
+		JButton boton = new JButton(texto);
+		boton.setPreferredSize(new Dimension(60, 40));
+		boton.setFont(new Font("SansSerif", Font.BOLD, 14));
+		return boton;
+	}
 
-    private void abrirAlta() {
-        AltaEditorialDialog dialog = new AltaEditorialDialog(this);
-        dialog.setVisible(true);
-    }
+	private void abrirAlta() {
+		AltaEditorialDialog dialog = new AltaEditorialDialog(this);
+		dialog.setVisible(true);
+	}
 
-    private void abrirBaja() {
-        BajaEditorialDialog dialog = new BajaEditorialDialog(this);
-        dialog.setVisible(true);
-    }
+	private void abrirBaja() {
+		BajaEditorialDialog dialog = new BajaEditorialDialog(this);
+		dialog.setVisible(true);
+	}
 
- 
-    private void abrirModificar() {
-        BuscarEditorialDialog dialog = new BuscarEditorialDialog(this, "modificar");
-        dialog.setVisible(true);
-    }
+	private void abrirModificar() {
+		BuscarEditorialDialog dialog = new BuscarEditorialDialog(this, "modificar");
+		dialog.setVisible(true);
+	}
 
-    private void abrirLeer() {
-        BuscarEditorialDialog dialog = new BuscarEditorialDialog(this, "leer");
-        dialog.setVisible(true);
-    }
+	private void abrirLeer() {
+		BuscarEditorialDialog dialog = new BuscarEditorialDialog(this, "leer");
+		dialog.setVisible(true);
+	}
 
-    private void abrirListar() {
-        ListarEditorialesDialog dialog = new ListarEditorialesDialog(this);
-        dialog.setVisible(true);
-    }
+	private void abrirListar() {
+		ListarEditorialesDialog dialog = new ListarEditorialesDialog(this);
+		dialog.setVisible(true);
+	}
 
-    private void volverMenuPrincipal() {
-        MainWindow ventanaPrincipal = new MainWindow();
-        ventanaPrincipal.setVisible(true);
-        dispose();
-    }
+	private void volverMenuPrincipal() {
+		MainWindow ventanaPrincipal = new MainWindow();
+		ventanaPrincipal.setVisible(true);
+		dispose();
+	}
 }

@@ -41,11 +41,11 @@ public class SistemaBDL {
 	public ControlCategoria getControlCategoria() {
 		return controlCategoria;
 	}
-	
+
 	public ControlEditorial getControlEditorial() {
 		return controlEditorial;
 	}
-	
+
 	public ControlCliente getControlCliente() {
 		return controlCliente;
 	}

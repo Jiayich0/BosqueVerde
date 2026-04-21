@@ -41,13 +41,13 @@ public class ClienteWindow extends JFrame {
 
 		JPanel panel = new JPanel(new GridLayout(7, 1, 0, 12));
 
-		JButton btnAlta         = crearBoton("ALTA CLIENTE");
-		JButton btnBaja         = crearBoton("BAJA CLIENTE");
-		JButton btnModificar    = crearBoton("MODIFICAR CLIENTE");
-		JButton btnLeer         = crearBoton("LEER CLIENTE");
-		JButton btnListar       = crearBoton("LISTAR CLIENTES");
+		JButton btnAlta = crearBoton("ALTA CLIENTE");
+		JButton btnBaja = crearBoton("BAJA CLIENTE");
+		JButton btnModificar = crearBoton("MODIFICAR CLIENTE");
+		JButton btnLeer = crearBoton("LEER CLIENTE");
+		JButton btnListar = crearBoton("LISTAR CLIENTES");
 		JButton btnRegistroSocio = crearBoton("REGISTRAR SOCIO");
-		JButton btnBajaSocio    = crearBoton("BAJA SOCIO");
+		JButton btnBajaSocio = crearBoton("BAJA SOCIO");
 
 		btnAlta.addActionListener(e -> abrirAlta());
 		btnBaja.addActionListener(e -> abrirBaja());

@@ -114,7 +114,7 @@ public class MainWindow extends JFrame {
 		ventanaEditorial.setVisible(true);
 		dispose();
 	}
-	
+
 	private void abrirCliente() {
 		ClienteWindow ventanaCliente = new ClienteWindow();
 		ventanaCliente.setVisible(true);

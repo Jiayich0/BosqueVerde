@@ -21,8 +21,7 @@ public class ControlCliente {
 
 	// ===================== Alta cliente ==============================
 
-	public boolean altaCliente(String nombre, String primerApellido, String segundoApellido, String dni,
-			String email) {
+	public boolean altaCliente(String nombre, String primerApellido, String segundoApellido, String dni, String email) {
 		Cliente clienteExistente = daoCliente.buscarPorDniTotal(dni);
 
 		if (clienteExistente == null) {
