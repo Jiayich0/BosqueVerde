@@ -8,6 +8,7 @@ public class SistemaBDL {
 	private ControlFactura controlFactura;
 	private ControlCategoria controlCategoria;
 	private ControlEditorial controlEditorial;
+	private ControlCliente controlCliente;
 
 	private SistemaBDL() {
 		this.controlVendedor = new ControlVendedor();
@@ -15,6 +16,7 @@ public class SistemaBDL {
 		this.controlFactura = new ControlFactura();
 		this.controlCategoria = new ControlCategoria();
 		this.controlEditorial = new ControlEditorial();
+		this.controlCliente = new ControlCliente();
 	}
 
 	public static SistemaBDL getInstance() {
@@ -42,5 +44,9 @@ public class SistemaBDL {
 	
 	public ControlEditorial getControlEditorial() {
 		return controlEditorial;
+	}
+	
+	public ControlCliente getControlCliente() {
+		return controlCliente;
 	}
 }

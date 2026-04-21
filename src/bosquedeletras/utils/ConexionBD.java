@@ -71,15 +71,38 @@ public class ConexionBD {
 						activo INTEGER NOT NULL
 					);
 				""";
-		
+
 		String sqlTablaEditorial = """
-        			CREATE TABLE IF NOT EXISTS editorial (
-            			id TEXT PRIMARY KEY,
-            			nombre TEXT NOT NULL,
-            			activo INTEGER NOT NULL
-						
-        			);
-            	""";
+				CREATE TABLE IF NOT EXISTS editorial (
+				 			id TEXT PRIMARY KEY,
+				 			nombre TEXT NOT NULL,
+				 			activo INTEGER NOT NULL
+
+				);
+				 	""";
+
+		String sqlTablaCliente = """
+					CREATE TABLE IF NOT EXISTS cliente (
+						id INTEGER PRIMARY KEY AUTOINCREMENT,
+						nombre TEXT NOT NULL,
+						primer_apellido TEXT NOT NULL,
+						segundo_apellido TEXT,
+						dni TEXT UNIQUE NOT NULL,
+						email TEXT,
+						activo INTEGER NOT NULL
+					);
+				""";
+
+		String sqlTablaSocio = """
+					CREATE TABLE IF NOT EXISTS socio (
+						id INTEGER PRIMARY KEY AUTOINCREMENT,
+						numero_socio TEXT UNIQUE NOT NULL,
+						fecha_inscripcion TEXT NOT NULL,
+						socio_activo INTEGER NOT NULL,
+						dni_cliente TEXT NOT NULL,
+						FOREIGN KEY (dni_cliente) REFERENCES cliente(dni)
+					);
+				""";
 
 		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
 
@@ -89,6 +112,8 @@ public class ConexionBD {
 			stmt.execute(sqlTablaLineaFactura);
 			stmt.execute(sqlTablaCategoria);
 			stmt.execute(sqlTablaEditorial);
+			stmt.execute(sqlTablaCliente);
+			stmt.execute(sqlTablaSocio);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
