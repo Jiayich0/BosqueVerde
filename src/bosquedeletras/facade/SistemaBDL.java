@@ -2,6 +2,7 @@ package bosquedeletras.facade;
 
 import java.util.List;
 
+import bosquedeletras.model.Cliente;
 import bosquedeletras.model.Vendedor;
 
 public class SistemaBDL {
@@ -9,10 +10,12 @@ public class SistemaBDL {
 	private static SistemaBDL instancia;
 	private ControlVendedor controlVendedor;
 	private ControlLibro controlLibro;
+	private ControlCliente controlCliente;
 
 	private SistemaBDL() {
 		this.controlVendedor = new ControlVendedor();
 		this.controlLibro = new ControlLibro();
+		this.controlCliente = new ControlCliente();
 	}
 
 	public static SistemaBDL getInstance() {
@@ -62,5 +65,41 @@ public class SistemaBDL {
 
 	public java.util.List<bosquedeletras.model.Libro> listarLibros() {
 		return controlLibro.listarLibros();
+	}
+
+	// -------------------- Subsistema Cliente -------------------------
+
+	public boolean altaCliente(String nombre, String primerApellido, String segundoApellido, String dni,
+			String email) {
+		return controlCliente.altaCliente(nombre, primerApellido, segundoApellido, dni, email);
+	}
+
+	public boolean bajaCliente(String dni) {
+		return controlCliente.bajaCliente(dni);
+	}
+
+	public boolean modificarCliente(String nombre, String primerApellido, String segundoApellido, String dni,
+			String email) {
+		return controlCliente.modificarCliente(nombre, primerApellido, segundoApellido, dni, email);
+	}
+
+	public Cliente leerCliente(String dni) {
+		return controlCliente.leerCliente(dni);
+	}
+
+	public List<Cliente> listarClientes() {
+		return controlCliente.listarClientes();
+	}
+
+	public boolean registrarSocio(String numeroSocio, String fechaInscripcion, String dniCliente) {
+		return controlCliente.registrarSocio(numeroSocio, fechaInscripcion, dniCliente);
+	}
+
+	public boolean darBajaSocio(String dniCliente) {
+		return controlCliente.darBajaSocio(dniCliente);
+	}
+
+	public bosquedeletras.model.Socio leerSocio(String dniCliente) {
+		return controlCliente.leerSocio(dniCliente);
 	}
 }
