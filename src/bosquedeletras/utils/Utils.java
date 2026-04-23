@@ -5,7 +5,7 @@ public class Utils {
 	public static final String DB_PATH = "jdbc:sqlite:src/resources/database/bosqueDeLetras.db";
 	public static final String BDL_IMG = "src/resources/icons/bosqueDeLetras.png";
 	public static final String VENDEDOR_IMG = "src/resources/icons/vendedor.png";
-	public static final String FACTURA_IMG = "src/resources/icons/factura icono.png";
+	public static final String FACTURA_IMG = "src/resources/icons/factura.png";
 
 	public static boolean isValidDni(String dni) {
 
