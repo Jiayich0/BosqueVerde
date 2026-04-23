@@ -1,15 +1,13 @@
 package bosquedeletras.view.editorial;
 
+import bosquedeletras.facade.SistemaBDL;
+import bosquedeletras.model.Editorial;
 import java.awt.BorderLayout;
 import java.awt.Dialog;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import bosquedeletras.facade.SistemaBDL;
-import bosquedeletras.model.Editorial;
 
 public class ModificarEditorialDialog extends JDialog {
 
@@ -51,7 +49,7 @@ public class ModificarEditorialDialog extends JDialog {
 	}
 
 	private void cargarDatos() {
-		formulario.setId(editorial.getId());
+		formulario.setId(editorial.getIdEditorial());
 		formulario.setNombre(editorial.getNombre());
 		formulario.setIdEditable(false); // El ID no se puede modificar
 	}

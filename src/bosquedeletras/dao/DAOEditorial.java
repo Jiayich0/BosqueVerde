@@ -12,11 +12,11 @@ import java.util.List;
 public class DAOEditorial {
 
 	public boolean insertar(Editorial e) {
-		String sql = "INSERT INTO editorial (id, nombre, activo) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO editorial (id_editorial, nombre, activo) VALUES (?, ?, ?)";
 
 		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-			ps.setString(1, e.getId());
+			ps.setString(1, e.getIdEditorial());
 			ps.setString(2, e.getNombre());
 			ps.setInt(3, e.isActivo() ? 1 : 0);
 
@@ -28,16 +28,16 @@ public class DAOEditorial {
 		}
 	}
 
-	public Editorial buscarPorId(String id) {
-		String sql = "SELECT * FROM editorial WHERE id = ?";
+	public Editorial buscarPorIdEditorial(String id_editorial) {
+		String sql = "SELECT * FROM editorial WHERE id_editorial = ?";
 
 		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-			ps.setString(1, id);
+			ps.setString(1, id_editorial);
 
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
-					return new Editorial(rs.getString("id"), rs.getString("nombre"), rs.getInt("activo") == 1);
+					return new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"), rs.getInt("activo") == 1);
 				}
 			}
 
@@ -47,16 +47,16 @@ public class DAOEditorial {
 		return null;
 	}
 
-	public Editorial buscarPorIdActivo(String id) {
-		String sql = "SELECT * FROM editorial WHERE id = ? AND activo = 1";
+	public Editorial buscarPorIdEditorialActivo(String id_editorial) {
+		String sql = "SELECT * FROM editorial WHERE id_editorial = ? AND activo = 1";
 
 		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-			ps.setString(1, id);
+			ps.setString(1, id_editorial);
 
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
-					return new Editorial(rs.getString("id"), rs.getString("nombre"), rs.getInt("activo") == 1);
+					return new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"), rs.getInt("activo") == 1);
 				}
 			}
 
@@ -66,12 +66,12 @@ public class DAOEditorial {
 		return null;
 	}
 
-	public boolean tieneLibrosAsociados(String id) {
+	public boolean tieneLibrosAsociados(String id_editorial) {
 		String sql = "SELECT COUNT(*) FROM libro WHERE editorial_id = ? AND activo = 1";
 
 		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-			ps.setString(1, id);
+			ps.setString(1, id_editorial);
 
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
@@ -85,12 +85,12 @@ public class DAOEditorial {
 		return false;
 	}
 
-	public boolean bajaLogica(String id) {
-		String sql = "UPDATE editorial SET activo = 0 WHERE id = ? AND activo = 1";
+	public boolean bajaLogica(String id_editorial) {
+		String sql = "UPDATE editorial SET activo = 0 WHERE id_editorial = ? AND activo = 1";
 
 		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-			ps.setString(1, id);
+			ps.setString(1, id_editorial);
 			return ps.executeUpdate() > 0;
 
 		} catch (SQLException ex) {
@@ -99,12 +99,12 @@ public class DAOEditorial {
 		}
 	}
 
-	public boolean reactivar(String id) {
-		String sql = "UPDATE editorial SET activo = 1 WHERE id = ? AND activo = 0";
+	public boolean reactivar(String id_editorial) {
+		String sql = "UPDATE editorial SET activo = 1 WHERE id_editorial = ? AND activo = 0";
 
 		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-			ps.setString(1, id);
+			ps.setString(1, id_editorial);
 			return ps.executeUpdate() > 0;
 
 		} catch (SQLException ex) {
@@ -115,12 +115,12 @@ public class DAOEditorial {
 
 	// Actualizar editorial
 	public boolean actualizar(Editorial editorial) {
-		String sql = "UPDATE editorial SET nombre = ? WHERE id = ? AND activo = 1";
+		String sql = "UPDATE editorial SET nombre = ? WHERE id_editorial = ? AND activo = 1";
 
 		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
 			ps.setString(1, editorial.getNombre());
-			ps.setString(2, editorial.getId());
+			ps.setString(2, editorial.getIdEditorial());
 
 			return ps.executeUpdate() > 0;
 
@@ -138,7 +138,7 @@ public class DAOEditorial {
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery()) {
 			while (rs.next()) {
-				editoriales.add(new Editorial(rs.getString("id"), rs.getString("nombre"), rs.getInt("activo") == 1));
+				editoriales.add(new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"), rs.getInt("activo") == 1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

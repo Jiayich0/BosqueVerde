@@ -21,7 +21,7 @@ public class FormularioEditorialPanel extends JPanel {
 		txtNombre = new JTextField();
 		add(txtNombre);
 
-		add(new JLabel("Id:"));
+		add(new JLabel("ID Editorial:"));
 		txtId = new JTextField();
 		add(txtId);
 

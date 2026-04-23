@@ -12,26 +12,26 @@ public class ControlEditorial {
 		this.daoEditorial = new DAOEditorial();
 	}
 
-	public int altaEditorial(String id, String nombre) {
+	public int altaEditorial(String idStr, String nombre) {
 		// Comprobar validez sintáctica
-		if (id == null || id.trim().isEmpty() || nombre == null || nombre.trim().isEmpty()) {
+		if (idStr == null || idStr.trim().isEmpty() || nombre == null || nombre.trim().isEmpty()) {
 			return -1; // Datos no válidos
 		}
 
-		id = id.trim().toUpperCase();
+		String id_editorial = idStr.trim().toUpperCase();
 		nombre = nombre.trim();
 
-		Editorial existente = daoEditorial.buscarPorId(id);
+		Editorial existente = daoEditorial.buscarPorIdEditorial(id_editorial);
 
 		// Caso 1: No existe → insertar nueva
 		if (existente == null) {
-			Editorial nueva = new Editorial(id, nombre);
+			Editorial nueva = new Editorial(id_editorial, nombre);
 			return daoEditorial.insertar(nueva) ? 1 : 0;
 		}
 
 		// Caso 2: Existe pero está inactiva → reactivar
 		if (!existente.isActivo()) {
-			boolean reactivado = daoEditorial.reactivar(id);
+			boolean reactivado = daoEditorial.reactivar(id_editorial);
 			if (reactivado) {
 				return 2;
 			}
@@ -43,18 +43,21 @@ public class ControlEditorial {
 	}
 
 	// Buscar editorial por ID (solo activas)
-	public Editorial buscarEditorial(String id) {
-		return daoEditorial.buscarPorIdActivo(id); // ← usa daoEditorial, no DAOEditorial
+	public Editorial buscarEditorial(String idStr) {
+		String id_editorial = idStr.trim().toUpperCase();
+		return daoEditorial.buscarPorIdEditorialActivo(id_editorial);
 	}
 
 	// Verificar si tiene libros asociados
-	public boolean tieneLibrosAsociados(String id) {
-		return daoEditorial.tieneLibrosAsociados(id); // ← usa daoEditorial
+	public boolean tieneLibrosAsociados(String idStr) {
+		String id_editorial = idStr.trim().toUpperCase();
+		return daoEditorial.tieneLibrosAsociados(id_editorial);
 	}
 
 	// Baja lógica de editorial
-	public boolean bajaEditorial(String id) {
-		Editorial editorial = daoEditorial.buscarPorId(id); // ← usa daoEditorial
+	public boolean bajaEditorial(String idStr) {
+		String id_editorial = idStr.trim().toUpperCase();
+		Editorial editorial = daoEditorial.buscarPorIdEditorial(id_editorial);
 
 		if (editorial == null) {
 			return false;
@@ -64,16 +67,17 @@ public class ControlEditorial {
 			return false;
 		}
 
-		if (tieneLibrosAsociados(id)) {
+		if (tieneLibrosAsociados(idStr)) {
 			return false;
 		}
 
-		return daoEditorial.bajaLogica(id);
+		return daoEditorial.bajaLogica(id_editorial);
 	}
 
 	// Modificar editorial
-	public boolean modificarEditorial(String id, String nombre) {
-		Editorial editorial = daoEditorial.buscarPorId(id);
+	public boolean modificarEditorial(String idStr, String nombre) {
+		String id_editorial = idStr.trim().toUpperCase();
+		Editorial editorial = daoEditorial.buscarPorIdEditorial(id_editorial);
 
 		if (editorial == null) {
 			return false;

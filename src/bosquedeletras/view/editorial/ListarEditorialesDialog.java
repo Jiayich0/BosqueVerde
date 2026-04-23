@@ -32,7 +32,7 @@ public class ListarEditorialesDialog extends JDialog {
 	private void initComponents() {
 		setLayout(new BorderLayout());
 
-		String[] columnas = { "ID", "Nombre", "Activo" };
+		String[] columnas = { "ID", "ID Editorial", "Nombre", "Activo" };
 		modeloTabla = new DefaultTableModel(columnas, 0) {
 			private static final long serialVersionUID = 1L;
 
@@ -58,7 +58,7 @@ public class ListarEditorialesDialog extends JDialog {
 		List<Editorial> editoriales = SistemaBDL.getInstance().getControlEditorial().listarEditoriales();
 
 		for (Editorial e : editoriales) {
-			Object[] fila = { e.getId(), e.getNombre(), e.isActivo() ? "Sí" : "No" };
+			Object[] fila = { e.getId(), e.getIdEditorial(), e.getNombre(), e.isActivo() ? "Sí" : "No" };
 			modeloTabla.addRow(fila);
 		}
 	}
