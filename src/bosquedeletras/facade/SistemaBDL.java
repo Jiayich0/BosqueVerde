@@ -69,7 +69,7 @@ public class SistemaBDL {
 		return controlLibro.listarLibros();
 	}
 
-	public boolean abrirVenta(String fecha, int idCliente, int idVendedor) {
+	public int abrirVenta(String fecha, int idCliente, int idVendedor) {
 		return controlFactura.abrirVenta(fecha, idCliente, idVendedor);
 	}
 
