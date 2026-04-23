@@ -4,7 +4,6 @@ import java.util.List;
 
 import bosquedeletras.dao.DAOCliente;
 import bosquedeletras.dao.DAOSocio;
-import bosquedeletras.model.Categoria;
 import bosquedeletras.model.Cliente;
 import bosquedeletras.model.Socio;
 import bosquedeletras.strategy.SortStrategy;

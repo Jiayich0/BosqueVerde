@@ -16,7 +16,7 @@ public class EditorialWindow extends JFrame {
 
 	public EditorialWindow() {
 		setTitle("EDITORIAL");
-		setSize(360, 300); // Un poco más pequeño que Vendedor (400 -> 300)
+		setSize(360, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -37,7 +37,7 @@ public class EditorialWindow extends JFrame {
 		JPanel contenedor = new JPanel(new BorderLayout());
 		contenedor.setBorder(BorderFactory.createEmptyBorder(45, 72, 0, 72));
 
-		JPanel panel = new JPanel(new GridLayout(5, 1, 0, 15)); // 5 botones
+		JPanel panel = new JPanel(new GridLayout(6, 1, 0, 15)); // 5 botones
 
 		JButton btnAlta = crearBotonSubsistema("ALTA EDITORIAL");
 		JButton btnBaja = crearBotonSubsistema("BAJA EDITORIAL");

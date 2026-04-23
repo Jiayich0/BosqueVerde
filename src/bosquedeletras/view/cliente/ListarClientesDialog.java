@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableModel;
 
 import bosquedeletras.facade.SistemaBDL;
 import bosquedeletras.model.Cliente;
-import bosquedeletras.model.Vendedor;
 import bosquedeletras.strategy.SortIdStrategy;
 import bosquedeletras.strategy.SortStrategy;
 

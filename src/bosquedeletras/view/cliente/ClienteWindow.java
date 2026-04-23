@@ -18,7 +18,7 @@ public class ClienteWindow extends JFrame {
 
 	public ClienteWindow() {
 		setTitle("CLIENTE");
-		setSize(360, 460);
+		setSize(360, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

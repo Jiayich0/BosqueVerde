@@ -37,7 +37,8 @@ public class DAOEditorial {
 
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
-					return new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"), rs.getInt("activo") == 1);
+					return new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"),
+							rs.getInt("activo") == 1);
 				}
 			}
 
@@ -56,7 +57,8 @@ public class DAOEditorial {
 
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
-					return new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"), rs.getInt("activo") == 1);
+					return new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"),
+							rs.getInt("activo") == 1);
 				}
 			}
 
@@ -138,7 +140,8 @@ public class DAOEditorial {
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery()) {
 			while (rs.next()) {
-				editoriales.add(new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"), rs.getInt("activo") == 1));
+				editoriales.add(new Editorial(rs.getInt("id"), rs.getString("id_editorial"), rs.getString("nombre"),
+						rs.getInt("activo") == 1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -95,11 +95,11 @@ public class ControlEditorial {
 
 	public List<Editorial> listarEditoriales(SortStrategy<Editorial> strategy) {
 		List<Editorial> lista = daoEditorial.listar();
-		
+
 		if (strategy != null) {
 			strategy.sort(lista);
 		}
 
-		return lista;		
+		return lista;
 	}
 }

@@ -47,7 +47,7 @@ public class ListarEditorialesDialog extends JDialog {
 				return false;
 			}
 		};
-		
+
 		comboOrden = new JComboBox<>();
 		comboOrden.addItem(new SortIdStrategy<Editorial>(true));
 		comboOrden.addItem(new SortIdStrategy<Editorial>(false));
@@ -55,9 +55,9 @@ public class ListarEditorialesDialog extends JDialog {
 		JPanel panelControl = new JPanel();
 		panelControl.add(new JLabel("Ordenar por:"));
 		panelControl.add(comboOrden);
-		
+
 		add(panelControl, BorderLayout.NORTH);
-		
+
 		tabla = new JTable(modeloTabla);
 		JScrollPane scrollPane = new JScrollPane(tabla);
 
@@ -73,7 +73,7 @@ public class ListarEditorialesDialog extends JDialog {
 
 	private void cargarEditoriales() {
 		modeloTabla.setRowCount(0);
-		
+
 		@SuppressWarnings("unchecked")
 		SortStrategy<Editorial> strategy = (SortStrategy<Editorial>) comboOrden.getSelectedItem();
 
