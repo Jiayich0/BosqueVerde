@@ -34,17 +34,17 @@
 ### 1. Realización de cada miembro
 - [x] Carlos L.
 - [x] Carlos T.
-- [ ] Nuria.
-- [ ] Pablo
+- [x] Nuria.
+- [x] Pablo
 - [ ] Jiale
 - [ ] Navas
-- [ ] Adriana
+- [x] Adriana
 ### 2. Extra
-- [ ] *Añadir aqui...*
+- [ ] *Añadir aquí...*
 
 # Entrega
 ### Revisión
 - [ ] Revisión funcional
 - [ ] Revisión de código (diseño, buenas prácticas, legibilidad, tec.)
-- [ ] Revisión requisitos (patrones necesarios)
+- [x] Revisión requisitos (patrones necesarios)
 - [ ] Entrega

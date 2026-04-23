@@ -126,4 +126,22 @@ public class DAOLibro {
 		return new Libro(rs.getInt("id"), rs.getString("titulo"), rs.getString("autor"), rs.getString("isbn"),
 				rs.getString("editorial"), rs.getInt("ano"), rs.getInt("activo") == 1);
 	}
+
+	public Libro buscarPorId(int id) {
+		String sql = "SELECT * FROM libro WHERE id = ? AND activo = 1";
+
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, id);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return mapearLibro(rs);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 }

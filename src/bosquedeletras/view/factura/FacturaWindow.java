@@ -8,11 +8,8 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import bosquedeletras.facade.SistemaBDL;
-import bosquedeletras.model.*;
 import bosquedeletras.view.MainWindow;
 
 public class FacturaWindow extends JFrame {
@@ -55,7 +52,7 @@ public class FacturaWindow extends JFrame {
 		btnAbrir.addActionListener(e -> abrirVenta());
 		btnAnadirLibro.addActionListener(e -> abrirAnadirLibro());
 		btnCerrar.addActionListener(e -> abrirCerrarVenta());
-		btnLeer.addActionListener(e -> abrirLeerFactura());
+		// btnLeer.addActionListener(e -> abrirLeerFactura());
 		btnListar.addActionListener(e -> abrirListarFacturas());
 		btnListarCliente.addActionListener(e -> abrirListarPorCliente());
 		btnListarVendedor.addActionListener(e -> abrirListarPorVendedor());
@@ -104,29 +101,10 @@ public class FacturaWindow extends JFrame {
 		dialog.setVisible(true);
 	}
 
-	private void abrirLeerFactura() {
-		String input = JOptionPane.showInputDialog(this, "Introduce el ID de la factura:");
-		if (input == null || input.isBlank()) {
-			return;
-		}
-
-		try {
-			int idFactura = Integer.parseInt(input);
-			Factura factura = SistemaBDL.getInstance().getControlFactura().leerFactura(idFactura);
-
-			if (factura == null) {
-				JOptionPane.showMessageDialog(this, "No existe ninguna factura con ese ID.", "ERROR",
-						JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-
-			LeerFacturaDialog dialog = new LeerFacturaDialog(this, factura);
-			dialog.setVisible(true);
-
-		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(this, "El ID debe ser numérico.", "ERROR", JOptionPane.ERROR_MESSAGE);
-		}
-	}
+	/*
+	 * private void abrirLeerFactura() { LeerFacturaDialog dialog = new
+	 * LeerFacturaDialog(this); dialog.setVisible(true); }
+	 */
 
 	private void abrirListarFacturas() {
 		ListarFacturasDialog dialog = new ListarFacturasDialog(this);

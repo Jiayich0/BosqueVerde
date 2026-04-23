@@ -142,4 +142,22 @@ public class DAOCliente {
 		return new Cliente(rs.getInt("id"), rs.getString("nombre"), rs.getString("primer_apellido"),
 				rs.getString("segundo_apellido"), rs.getString("dni"), rs.getString("email"), rs.getInt("activo") == 1);
 	}
+
+	public Cliente buscarPorId(int id) {
+		String sql = "SELECT * FROM cliente WHERE id = ? AND activo = 1";
+
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, id);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return mapearCliente(rs);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 }

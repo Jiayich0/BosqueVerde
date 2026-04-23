@@ -140,4 +140,22 @@ public class DAOVendedor {
 				rs.getString("segundo_apellido"), rs.getString("dni"), rs.getString("telefono"),
 				rs.getInt("activo") == 1);
 	}
+
+	public Vendedor buscarPorId(int id) {
+		String sql = "SELECT * FROM vendedor WHERE id = ? AND activo = 1";
+
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, id);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return mapearVendedor(rs);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 }
