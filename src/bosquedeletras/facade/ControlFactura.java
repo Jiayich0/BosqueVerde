@@ -21,7 +21,6 @@ public class ControlFactura {
 	private DAOVendedor daoVendedor;
 	private DAOLibro daoLibro;
 
-
 	public ControlFactura() {
 		this.daoFactura = new DAOFactura();
 		this.daoLineaFactura = new DAOLineaFactura();
@@ -33,10 +32,10 @@ public class ControlFactura {
 	public int abrirVenta(String fecha, int idCliente, int idVendedor) {
 		if (fecha == null || fecha.isBlank()) return -1;
 
-		Cliente cliente = daoCliente.buscarPorDni(idCliente);
+		Cliente cliente = daoCliente.buscarPorId(idCliente);
 		if (cliente == null) return -1;
 
-		Vendedor vendedor = daoVendedor.buscarPorDni(idVendedor);
+		Vendedor vendedor = daoVendedor.buscarPorId(idVendedor);
 		if (vendedor == null) return -1;
 
 		Factura nuevaFactura = new Factura(fecha, idCliente, idVendedor);
@@ -47,7 +46,7 @@ public class ControlFactura {
 		Factura factura = daoFactura.buscarPorId(idFactura);
 		if (factura == null || factura.isCerrada()) return false;
 
-		Libro libro = daoLibro.buscarPorIsbn(idLibro);
+		Libro libro = daoLibro.buscarPorId(idLibro);
 		if (libro == null) return false;
 
 		if (cantidad <= 0 || precioUnitario <= 0) return false;
@@ -63,8 +62,8 @@ public class ControlFactura {
 		Factura factura = daoFactura.buscarPorId(idFactura);
 		if (factura == null || factura.isCerrada()) return false;
 
-		if (daoCliente.buscarPorDni(factura.getIdCliente()) == null) return false;
-		if (daoVendedor.buscarPorDni(factura.getIdVendedor()) == null) return false;
+		if (daoCliente.buscarPorId(factura.getIdCliente()) == null) return false;
+		if (daoVendedor.buscarPorId(factura.getIdVendedor()) == null) return false;
 
 		List<LineaFactura> lineas = daoLineaFactura.listarPorFactura(idFactura);
 		if (lineas == null || lineas.isEmpty()) return false;
