@@ -74,7 +74,8 @@ public class ConexionBD {
 
 		String sqlTablaEditorial = """
 				CREATE TABLE IF NOT EXISTS editorial (
-				 			id TEXT PRIMARY KEY,
+							id INTEGER PRIMARY KEY AUTOINCREMENT,
+				 			id_editorial TEXT UNIQUE NOT NULL,
 				 			nombre TEXT NOT NULL,
 				 			activo INTEGER NOT NULL
 
