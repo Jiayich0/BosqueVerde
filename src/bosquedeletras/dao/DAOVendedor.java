@@ -76,6 +76,24 @@ public class DAOVendedor {
 		}
 	}
 
+	public Vendedor buscarPorId(int id) {
+	String sql = "SELECT * FROM vendedor WHERE id = ? AND activo = 1";
+
+	try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+		ps.setInt(1, id);
+
+		try (ResultSet rs = ps.executeQuery()) {
+			if (rs.next()) {
+				return mapearVendedor(rs);
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+
+	return null;
+}
+
 	public Vendedor buscarPorDni(String dni) {
 		String sql = "SELECT * FROM vendedor WHERE dni = ? AND activo = 1";
 
