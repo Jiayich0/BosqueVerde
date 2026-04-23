@@ -43,7 +43,10 @@ public class LeerEditorialDialog extends JDialog {
 	}
 
 	private JPanel crearPanelDatos(Editorial e) {
-		JPanel panel = new JPanel(new GridLayout(3, 2, 10, 12));
+		JPanel panel = new JPanel(new GridLayout(4, 2, 10, 12));
+
+		panel.add(new JLabel("ID:"));
+		panel.add(new JLabel(String.valueOf(e.getId())));
 
 		panel.add(new JLabel("ID Editorial:"));
 		panel.add(new JLabel(e.getIdEditorial()));
