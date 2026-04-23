@@ -1,6 +1,8 @@
 package bosquedeletras.model;
 
-public class Editorial {
+import bosquedeletras.strategy.Sortable;
+
+public class Editorial implements Sortable {
 
 	private int id;
 	private String id_editorial;
@@ -23,6 +25,7 @@ public class Editorial {
 	}
 
 	// Getters
+	@Override
 	public int getId() {
 		return id;
 	}

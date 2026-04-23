@@ -2,6 +2,8 @@ package bosquedeletras.facade;
 
 import bosquedeletras.dao.DAOEditorial;
 import bosquedeletras.model.Editorial;
+import bosquedeletras.strategy.SortStrategy;
+
 import java.util.List;
 
 public class ControlEditorial {
@@ -91,7 +93,13 @@ public class ControlEditorial {
 		return daoEditorial.actualizar(editorial);
 	}
 
-	public List<Editorial> listarEditoriales() {
-		return daoEditorial.listar();
+	public List<Editorial> listarEditoriales(SortStrategy<Editorial> strategy) {
+		List<Editorial> lista = daoEditorial.listar();
+		
+		if (strategy != null) {
+			strategy.sort(lista);
+		}
+
+		return lista;		
 	}
 }
