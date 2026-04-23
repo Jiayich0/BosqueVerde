@@ -79,24 +79,6 @@ public class DAOCliente {
 		}
 	}
 
-	public Cliente buscarPorId(int id) {
-	String sql = "SELECT * FROM cliente WHERE id = ? AND activo = 1";
-
-	try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-		ps.setInt(1, id);
-
-		try (ResultSet rs = ps.executeQuery()) {
-			if (rs.next()) {
-				return mapearCliente(rs);
-			}
-		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-
-	return null;
-}
-
 	public Cliente buscarPorDni(String dni) {
 		String sql = "SELECT * FROM cliente WHERE dni = ? AND activo = 1";
 
