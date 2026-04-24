@@ -4,6 +4,7 @@ import bosquedeletras.utils.Utils;
 import bosquedeletras.view.categoria.CategoriaWindow;
 import bosquedeletras.view.cliente.ClienteWindow;
 import bosquedeletras.view.editorial.EditorialWindow;
+import bosquedeletras.view.factura.FacturaWindow;
 import bosquedeletras.view.libro.LibroWindow;
 import bosquedeletras.view.vendedor.VendedorWindow;
 import java.awt.BorderLayout;
@@ -73,6 +74,7 @@ public class MainWindow extends JFrame {
 		btnCategoria.addActionListener(e -> abrirCategoria());
 		btnEditorial.addActionListener(e -> abrirEditorial());
 		btnCliente.addActionListener(e -> abrirCliente());
+		btnFactura.addActionListener(e -> abrirFactura());
 
 		panel.add(btnCliente);
 		panel.add(btnVendedor);
@@ -118,6 +120,12 @@ public class MainWindow extends JFrame {
 	private void abrirCliente() {
 		ClienteWindow ventanaCliente = new ClienteWindow();
 		ventanaCliente.setVisible(true);
+		dispose();
+	}
+	
+	private void abrirFactura() {
+		FacturaWindow ventanaFactura = new FacturaWindow();
+		ventanaFactura.setVisible(true);
 		dispose();
 	}
 }
