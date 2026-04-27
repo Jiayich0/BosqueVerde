@@ -122,7 +122,7 @@ public class MainWindow extends JFrame {
 		ventanaCliente.setVisible(true);
 		dispose();
 	}
-
+	
 	private void abrirFactura() {
 		FacturaWindow ventanaFactura = new FacturaWindow();
 		ventanaFactura.setVisible(true);

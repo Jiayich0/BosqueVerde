@@ -46,18 +46,21 @@ public class LibroWindow extends JFrame {
 		JButton btnModificar = crearBotonSubsistema("MODIFICAR LIBRO");
 		JButton btnLeer = crearBotonSubsistema("LEER LIBRO");
 		JButton btnListar = crearBotonSubsistema("LISTAR LIBROS");
+		JButton btnAsignarCategoria = crearBotonSubsistema("ASIGNAR CATEGORÍA");
 
 		btnAlta.addActionListener(e -> abrirAltaLibro());
-		// btnBaja.addActionListener(e -> ());
+		btnBaja.addActionListener(e -> abrirBajaLibro());
 		btnModificar.addActionListener(e -> abrirModificarLibro());
 		btnLeer.addActionListener(e -> abrirLeerLibro());
-		// btnListar.addActionListener(e -> ());
+		btnListar.addActionListener(e -> abrirListarLibros());
+		btnAsignarCategoria.addActionListener(e -> abrirAsignarCategoria());
 
 		panel.add(btnAlta);
 		panel.add(btnBaja);
 		panel.add(btnModificar);
 		panel.add(btnLeer);
 		panel.add(btnListar);
+		panel.add(btnAsignarCategoria);
 
 		contenedor.add(panel, BorderLayout.CENTER);
 		return contenedor;
@@ -93,6 +96,21 @@ public class LibroWindow extends JFrame {
 	private void abrirLeerLibro() {
 		BuscarLibroDialog dialog = new BuscarLibroDialog(this, "leer");
 		dialog.setVisible(true);
+	}
+
+	private void abrirBajaLibro() {
+    BuscarLibroDialog dialog = new BuscarLibroDialog(this, "baja");
+    dialog.setVisible(true);
+	}
+
+	private void abrirListarLibros() {
+    ListarLibroDialog dialog = new ListarLibroDialog(this);
+    dialog.setVisible(true);
+	}		
+
+	private void abrirAsignarCategoria() {
+    AsignarCategoriaLibroDialog dialog = new AsignarCategoriaLibroDialog(this);
+    dialog.setVisible(true);
 	}
 
 	private void volverMenuPrincipal() {

@@ -104,8 +104,7 @@ public class ControlCliente {
 			return false;
 		}
 
-		Socio nuevoSocio = new Socio(cliente.getNombre(), cliente.getPrimerApellido(), cliente.getSegundoApellido(),
-				cliente.getDni(), cliente.getEmail(), numeroSocio, fechaInscripcion);
+		Socio nuevoSocio = new Socio(numeroSocio, fechaInscripcion, dniCliente);
 		return daoSocio.guardarSocio(nuevoSocio);
 	}
 

@@ -13,7 +13,7 @@ import bosquedeletras.utils.ConexionBD;
 public class DAOLibro {
 
 	public boolean insertar(Libro libro) {
-		String sql = "INSERT INTO libro (titulo, autor, isbn, editorial, ano, activo) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO libro (titulo, autor, isbn, editorial, ano, id_categoria, activo) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setString(1, libro.getTitulo());
@@ -21,7 +21,8 @@ public class DAOLibro {
 			ps.setString(3, libro.getIsbn());
 			ps.setString(4, libro.getEditorial());
 			ps.setInt(5, libro.getAno());
-			ps.setInt(6, libro.isActivo() ? 1 : 0);
+			ps.setInt(6, libro.getIdCategoria());
+			ps.setInt(7, libro.isActivo() ? 1 : 0);
 
 			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
@@ -123,9 +124,17 @@ public class DAOLibro {
 	}
 
 	private Libro mapearLibro(ResultSet rs) throws SQLException {
-		return new Libro(rs.getInt("id"), rs.getString("titulo"), rs.getString("autor"), rs.getString("isbn"),
-				rs.getString("editorial"), rs.getInt("ano"), rs.getInt("activo") == 1);
-	}
+    return new Libro(
+        rs.getInt("id"),
+        rs.getString("titulo"),
+        rs.getString("autor"),
+        rs.getString("isbn"),
+        rs.getString("editorial"),
+        rs.getInt("ano"),
+        rs.getInt("id_categoria"),
+        rs.getInt("activo") == 1
+    );
+}
 
 	public Libro buscarPorId(int id) {
 		String sql = "SELECT * FROM libro WHERE id = ? AND activo = 1";
@@ -144,4 +153,22 @@ public class DAOLibro {
 
 		return null;
 	}
+
+
+	public boolean actualizarCategoria(String isbn, int idCategoria) {
+    String sql = "UPDATE libro SET id_categoria = ? WHERE isbn = ? AND activo = 1";
+
+    try (Connection conn = ConexionBD.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, idCategoria);
+        ps.setString(2, isbn);
+
+        return ps.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }

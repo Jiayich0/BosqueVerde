@@ -18,7 +18,7 @@ public class ControlLibro {
 		Libro libroExistente = daoLibro.buscarPorIsbnTotal(isbn);
 
 		if (libroExistente == null) {
-			Libro nuevoLibro = new Libro(titulo, autor, isbn, editorial, ano);
+			Libro nuevoLibro = new Libro(titulo, autor, isbn, editorial, ano, 0);
 			return daoLibro.insertar(nuevoLibro);
 		}
 
@@ -38,6 +38,8 @@ public class ControlLibro {
 
 		return daoLibro.actualizar(libroExistente);
 	}
+
+
 
 	public boolean bajaLibro(String isbn) {
 		return daoLibro.bajaLogica(isbn);
@@ -71,4 +73,15 @@ public class ControlLibro {
 
 		return lista;
 	}
+
+
+	public boolean asignarLibroACategoria(String isbn, int idCategoria) {
+    Libro libro = daoLibro.buscarPorIsbn(isbn);
+
+    if (libro == null) {
+        return false;
+    }
+
+    return daoLibro.actualizarCategoria(isbn, idCategoria);
+}
 }
