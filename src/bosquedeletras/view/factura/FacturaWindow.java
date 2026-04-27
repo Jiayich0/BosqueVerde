@@ -21,7 +21,7 @@ public class FacturaWindow extends JFrame {
 
 	public FacturaWindow() {
 		setTitle("FACTURA");
-		setSize(420, 500);
+		setSize(360, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -42,7 +42,7 @@ public class FacturaWindow extends JFrame {
 		JPanel contenedor = new JPanel(new BorderLayout());
 		contenedor.setBorder(BorderFactory.createEmptyBorder(35, 72, 0, 72));
 
-		JPanel panel = new JPanel(new GridLayout(8, 1, 0, 15));
+		JPanel panel = new JPanel(new GridLayout(7, 1, 0, 12));
 
 		JButton btnAbrir = crearBotonSubsistema("ABRIR VENTA");
 		JButton btnAnadirLibro = crearBotonSubsistema("AÑADIR LIBRO A VENTA");
@@ -105,30 +105,30 @@ public class FacturaWindow extends JFrame {
 	}
 
 	private void abrirLeerFactura() {
-	String input = JOptionPane.showInputDialog(this, "Introduce el ID de la factura:");
+		String input = JOptionPane.showInputDialog(this, "Introduce el ID de la factura:");
 
-	if (input == null || input.isBlank()) {
-		return;
-	}
-
-	try {
-		int idFactura = Integer.parseInt(input.trim());
-
-		Factura factura = SistemaBDL.getInstance().getControlFactura().leerFactura(idFactura);
-
-		if (factura == null) {
-			JOptionPane.showMessageDialog(this, "No existe ninguna factura con ese ID.", "ERROR",
-					JOptionPane.ERROR_MESSAGE);
+		if (input == null || input.isBlank()) {
 			return;
 		}
 
-		LeerFacturaDialog dialog = new LeerFacturaDialog(this, factura);
-		dialog.setVisible(true);
+		try {
+			int idFactura = Integer.parseInt(input.trim());
 
-	} catch (NumberFormatException e) {
-		JOptionPane.showMessageDialog(this, "El ID debe ser numérico.", "ERROR", JOptionPane.ERROR_MESSAGE);
+			Factura factura = SistemaBDL.getInstance().getControlFactura().leerFactura(idFactura);
+
+			if (factura == null) {
+				JOptionPane.showMessageDialog(this, "No existe ninguna factura con ese ID.", "ERROR",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			LeerFacturaDialog dialog = new LeerFacturaDialog(this, factura);
+			dialog.setVisible(true);
+
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "El ID debe ser numérico.", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
 	}
-}
 
 	private void abrirListarFacturas() {
 		ListarFacturasDialog dialog = new ListarFacturasDialog(this);
