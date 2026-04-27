@@ -18,7 +18,7 @@ public class DAOSocio {
 			ps.setString(1, s.getNumeroSocio());
 			ps.setString(2, s.getFechaInscripcion());
 			ps.setInt(3, s.isSocioActivo() ? 1 : 0);
-			ps.setString(4, s.getDniCliente());
+			ps.setString(4, s.getDni());
 
 			return ps.executeUpdate() > 0;
 
@@ -81,7 +81,8 @@ public class DAOSocio {
 	}
 
 	private Socio mapearSocio(ResultSet rs) throws SQLException {
-		return new Socio(rs.getInt("id"), rs.getString("numero_socio"), rs.getString("fecha_inscripcion"),
-				rs.getInt("socio_activo") == 1, rs.getString("dni_cliente"));
+		return new Socio(rs.getInt("id"), rs.getString("nombre"), rs.getString("primer_apellido"),
+				rs.getString("segundo_apellido"), rs.getString("dni"), rs.getString("email"), rs.getInt("activo") == 1,
+				rs.getString("numero_socio"), rs.getString("fecha_inscripcion"), rs.getInt("socio_activo") == 1);
 	}
 }

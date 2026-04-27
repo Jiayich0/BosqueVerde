@@ -1,33 +1,27 @@
 package bosquedeletras.model;
 
-public class Socio {
+public class Socio extends Cliente {
 
-	private int id;
 	private String numeroSocio;
 	private String fechaInscripcion;
 	private boolean socioActivo;
-	private String dniCliente; // FK → cliente.dni
 
-	// Constructor parcial (por interfaz)
-	public Socio(String numeroSocio, String fechaInscripcion, String dniCliente) {
-		this.socioActivo = true;
+	// Constructor parcial (por interfaz) — llama al constructor parcial de Cliente
+	public Socio(String nombre, String primerApellido, String segundoApellido, String dni, String email,
+			String numeroSocio, String fechaInscripcion) {
+		super(nombre, primerApellido, segundoApellido, dni, email);
 		this.numeroSocio = numeroSocio;
 		this.fechaInscripcion = fechaInscripcion;
-		this.dniCliente = dniCliente;
+		this.socioActivo = true;
 	}
 
-	// Constructor completo (desde BD)
-	public Socio(int id, String numeroSocio, String fechaInscripcion, boolean socioActivo, String dniCliente) {
-		this.id = id;
+	// Constructor completo (desde BD) — llama al constructor completo de Cliente
+	public Socio(int id, String nombre, String primerApellido, String segundoApellido, String dni, String email,
+			boolean activo, String numeroSocio, String fechaInscripcion, boolean socioActivo) {
+		super(id, nombre, primerApellido, segundoApellido, dni, email, activo);
 		this.numeroSocio = numeroSocio;
 		this.fechaInscripcion = fechaInscripcion;
 		this.socioActivo = socioActivo;
-		this.dniCliente = dniCliente;
-	}
-
-	// Getters
-	public int getId() {
-		return id;
 	}
 
 	public String getNumeroSocio() {
@@ -42,15 +36,6 @@ public class Socio {
 		return socioActivo;
 	}
 
-	public String getDniCliente() {
-		return dniCliente;
-	}
-
-	// Setters
-	public void setSocioActivo(boolean socioActivo) {
-		this.socioActivo = socioActivo;
-	}
-
 	public void setNumeroSocio(String numeroSocio) {
 		this.numeroSocio = numeroSocio;
 	}
@@ -59,8 +44,12 @@ public class Socio {
 		this.fechaInscripcion = fechaInscripcion;
 	}
 
+	public void setSocioActivo(boolean socioActivo) {
+		this.socioActivo = socioActivo;
+	}
+
 	@Override
 	public String toString() {
-		return "Socio " + numeroSocio + " (cliente: " + dniCliente + ")";
+		return super.toString() + " — Socio nº " + numeroSocio;
 	}
 }
