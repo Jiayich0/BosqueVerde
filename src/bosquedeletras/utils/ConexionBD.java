@@ -37,6 +37,7 @@ public class ConexionBD {
 						isbn TEXT UNIQUE NOT NULL,
 						editorial TEXT NOT NULL,
 						ano INTEGER NOT NULL,
+						id_categoria INTEGER,
 						activo INTEGER NOT NULL
 					);
 				""";
@@ -139,6 +140,7 @@ public class ConexionBD {
 			e.printStackTrace();
 		}
 	}
+}
 	
 	public static void resetEditorial() {
 		String sqlDrop = "DROP TABLE IF EXISTS editorial";

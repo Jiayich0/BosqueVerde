@@ -12,25 +12,28 @@ public class Libro implements Sortable {
 	private String isbn;
 	private String editorial;
 	private int ano;
+	private int idCategoria;
 
-	public Libro(String titulo, String autor, String isbn, String editorial, int ano) {
-		this.activo = true;
-		this.titulo = titulo;
-		this.autor = autor;
-		this.isbn = isbn;
-		this.editorial = editorial;
-		this.ano = ano;
-	}
+	
+	
+	public Libro(String titulo, String autor, String isbn, String editorial, int ano, int idCategoria) {
+    this.activo = true;
+    this.titulo = titulo;
+    this.autor = autor;
+    this.isbn = isbn;
+    this.editorial = editorial;
+    this.ano = ano;
+    this.idCategoria = idCategoria;}
 
-	public Libro(int id, String titulo, String autor, String isbn, String editorial, int ano, boolean activo) {
-		this.id = id;
-		this.activo = activo;
-		this.titulo = titulo;
-		this.autor = autor;
-		this.isbn = isbn;
-		this.editorial = editorial;
-		this.ano = ano;
-	}
+	public Libro(int id, String titulo, String autor, String isbn, String editorial, int ano, int idCategoria, boolean activo) {
+    this.id = id;
+    this.activo = activo;
+    this.titulo = titulo;
+    this.autor = autor;
+    this.isbn = isbn;
+    this.editorial = editorial;
+    this.ano = ano;
+    this.idCategoria = idCategoria;}
 
 	// Getters
 	@Override
@@ -62,6 +65,10 @@ public class Libro implements Sortable {
 		return ano;
 	}
 
+	public int getIdCategoria() {
+    return idCategoria;
+	}
+
 	// Setters
 
 	public void setActivo(boolean activo) {
@@ -82,6 +89,10 @@ public class Libro implements Sortable {
 
 	public void setAno(int ano) {
 		this.ano = ano;
+	}
+
+	public void setIdCategoria(int idCategoria) {
+    this.idCategoria = idCategoria;
 	}
 
 	@Override
