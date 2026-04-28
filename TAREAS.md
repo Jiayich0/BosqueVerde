@@ -36,15 +36,15 @@
 - [x] Carlos T.
 - [x] Nuria.
 - [x] Pablo
-- [ ] Jiale
-- [ ] Navas
+- [x] Jiale
+- [x] Navas
 - [x] Adriana
 ### 2. Extra
 - [ ] *Añadir aquí...*
 
 # Entrega
 ### Revisión
-- [ ] Revisión funcional
-- [ ] Revisión de código (diseño, buenas prácticas, legibilidad, tec.)
+- [x] Revisión funcional
+- [x] Revisión de código (diseño, buenas prácticas, legibilidad, tec.)
 - [x] Revisión requisitos (patrones necesarios)
-- [ ] Entrega
+- [x] Entrega

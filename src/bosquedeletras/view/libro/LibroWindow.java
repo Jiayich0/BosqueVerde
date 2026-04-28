@@ -99,7 +99,7 @@ public class LibroWindow extends JFrame {
 	}
 
 	private void abrirBajaLibro() {
-		BuscarLibroDialog dialog = new BuscarLibroDialog(this, "baja");
+		BajaLibroDialog dialog = new BajaLibroDialog(this);
 		dialog.setVisible(true);
 	}
 
