@@ -139,4 +139,15 @@ public class ConexionBD {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void resetEditorial() {
+		String sqlDrop = "DROP TABLE IF EXISTS editorial";
+
+		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
+			stmt.executeUpdate(sqlDrop);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
