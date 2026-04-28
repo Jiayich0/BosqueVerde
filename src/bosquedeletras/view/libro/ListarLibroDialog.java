@@ -82,15 +82,8 @@ public class ListarLibroDialog extends JDialog {
 		List<Libro> libros = SistemaBDL.getInstance().getControlLibro().listarLibros(strategy);
 
 		for (Libro l : libros) {
-			Object[] fila = {
-					l.getId(),
-					l.getTitulo(),
-					l.getAutor(),
-					l.getIsbn(),
-					l.getEditorial(),
-					l.getAno(),
-					l.getIdCategoria()
-			};
+			Object[] fila = { l.getId(), l.getTitulo(), l.getAutor(), l.getIsbn(), l.getEditorial(), l.getAno(),
+					l.getIdCategoria() };
 
 			modeloTabla.addRow(fila);
 		}

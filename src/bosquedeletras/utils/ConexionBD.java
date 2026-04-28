@@ -140,8 +140,7 @@ public class ConexionBD {
 			e.printStackTrace();
 		}
 	}
-}
-	
+
 	public static void resetEditorial() {
 		String sqlDrop = "DROP TABLE IF EXISTS editorial";
 
@@ -151,5 +150,15 @@ public class ConexionBD {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public static void resetLibro() {
+		String sqlDrop = "DROP TABLE IF EXISTS libro";
+
+		try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
+			stmt.executeUpdate(sqlDrop);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

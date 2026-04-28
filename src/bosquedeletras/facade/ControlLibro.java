@@ -39,8 +39,6 @@ public class ControlLibro {
 		return daoLibro.actualizar(libroExistente);
 	}
 
-
-
 	public boolean bajaLibro(String isbn) {
 		return daoLibro.bajaLogica(isbn);
 	}
@@ -74,14 +72,13 @@ public class ControlLibro {
 		return lista;
 	}
 
-
 	public boolean asignarLibroACategoria(String isbn, int idCategoria) {
-    Libro libro = daoLibro.buscarPorIsbn(isbn);
+		Libro libro = daoLibro.buscarPorIsbn(isbn);
 
-    if (libro == null) {
-        return false;
-    }
+		if (libro == null) {
+			return false;
+		}
 
-    return daoLibro.actualizarCategoria(isbn, idCategoria);
-}
+		return daoLibro.actualizarCategoria(isbn, idCategoria);
+	}
 }

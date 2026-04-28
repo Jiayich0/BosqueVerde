@@ -124,17 +124,9 @@ public class DAOLibro {
 	}
 
 	private Libro mapearLibro(ResultSet rs) throws SQLException {
-    return new Libro(
-        rs.getInt("id"),
-        rs.getString("titulo"),
-        rs.getString("autor"),
-        rs.getString("isbn"),
-        rs.getString("editorial"),
-        rs.getInt("ano"),
-        rs.getInt("id_categoria"),
-        rs.getInt("activo") == 1
-    );
-}
+		return new Libro(rs.getInt("id"), rs.getString("titulo"), rs.getString("autor"), rs.getString("isbn"),
+				rs.getString("editorial"), rs.getInt("ano"), rs.getInt("id_categoria"), rs.getInt("activo") == 1);
+	}
 
 	public Libro buscarPorId(int id) {
 		String sql = "SELECT * FROM libro WHERE id = ? AND activo = 1";
@@ -154,21 +146,19 @@ public class DAOLibro {
 		return null;
 	}
 
-
 	public boolean actualizarCategoria(String isbn, int idCategoria) {
-    String sql = "UPDATE libro SET id_categoria = ? WHERE isbn = ? AND activo = 1";
+		String sql = "UPDATE libro SET id_categoria = ? WHERE isbn = ? AND activo = 1";
 
-    try (Connection conn = ConexionBD.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (Connection conn = ConexionBD.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setInt(1, idCategoria);
-        ps.setString(2, isbn);
+			ps.setInt(1, idCategoria);
+			ps.setString(2, isbn);
 
-        return ps.executeUpdate() > 0;
+			return ps.executeUpdate() > 0;
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return false;
-    }
-}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

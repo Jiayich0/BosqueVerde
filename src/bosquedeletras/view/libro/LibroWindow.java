@@ -99,18 +99,18 @@ public class LibroWindow extends JFrame {
 	}
 
 	private void abrirBajaLibro() {
-    BuscarLibroDialog dialog = new BuscarLibroDialog(this, "baja");
-    dialog.setVisible(true);
+		BuscarLibroDialog dialog = new BuscarLibroDialog(this, "baja");
+		dialog.setVisible(true);
 	}
 
 	private void abrirListarLibros() {
-    ListarLibroDialog dialog = new ListarLibroDialog(this);
-    dialog.setVisible(true);
-	}		
+		ListarLibroDialog dialog = new ListarLibroDialog(this);
+		dialog.setVisible(true);
+	}
 
 	private void abrirAsignarCategoria() {
-    AsignarCategoriaLibroDialog dialog = new AsignarCategoriaLibroDialog(this);
-    dialog.setVisible(true);
+		AsignarCategoriaLibroDialog dialog = new AsignarCategoriaLibroDialog(this);
+		dialog.setVisible(true);
 	}
 
 	private void volverMenuPrincipal() {
